@@ -11,15 +11,18 @@ const BREAKPOINTS = [
 const ROUTES = ["/", "/program", "/admission", "/news"];
 
 async function assertNoHorizontalScroll(page: Page, label: string) {
-  // Allow 1px rounding tolerance.
-  const overflow = await page.evaluate(() => {
-    const d = document.documentElement;
-    return { scroll: d.scrollWidth, client: d.clientWidth };
+  // Check user-visible horizontal scrolling. Body uses overflow-x: hidden,
+  // so scrollWidth can exceed clientWidth without producing real scroll.
+  const result = await page.evaluate(() => {
+    window.scrollTo(200, 0);
+    const x = window.scrollX;
+    window.scrollTo(0, 0);
+    return { x, scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth };
   });
   expect(
-    overflow.scroll - overflow.client,
-    `${label}: horizontal overflow scrollWidth=${overflow.scroll} clientWidth=${overflow.client}`
-  ).toBeLessThanOrEqual(1);
+    result.x,
+    `${label}: horizontally scrollable (scrollX=${result.x}, scrollWidth=${result.scroll}, clientWidth=${result.client})`
+  ).toBe(0);
 }
 
 async function assertNoOverflowingElements(page: Page, label: string) {
