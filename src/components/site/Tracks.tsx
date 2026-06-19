@@ -206,9 +206,9 @@ export default function Tracks() {
                 </AnimatePresence>
 
                 {!isOpen && (
-                  <motion.div animate={{ y: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.8 }} style={{ position: "absolute", right: 18, bottom: 18, color: "#A3A3A3" }}>
+                  <div style={{ position: "absolute", right: 18, bottom: 18, color: "#A3A3A3" }}>
                     <ChevronDown size={18} />
-                  </motion.div>
+                  </div>
                 )}
               </motion.div>
             );
