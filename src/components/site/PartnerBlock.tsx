@@ -1,18 +1,7 @@
-import { motion, useInView, useMotionValue, animate } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { ShoppingCart, Sparkle, Code2, Eye } from "lucide-react";
 
 function BigCounter({ to }: { to: number }) {
-  const mv = useMotionValue(0);
-  const [v, setV] = useState(0);
-  const r = useRef(null);
-  const inView = useInView(r, { once: true });
-  useEffect(() => {
-    if (!inView) return;
-    const c = animate(mv, to, { duration: 1.2, ease: "easeOut", onUpdate: (n) => setV(Math.round(n)) });
-    return c.stop;
-  }, [inView, to, mv]);
-  return <span ref={r}>{v.toLocaleString("ru-RU")}+</span>;
+  return <span>{to.toLocaleString("ru-RU")}+</span>;
 }
 
 const directions = [
@@ -34,7 +23,7 @@ export default function PartnerBlock() {
             X5 Tech — технологическое ядро X5 Group, одного из крупнейших ритейлеров России. Команда строит AI-продукты, которые работают на миллионы покупателей каждый день.
           </p>
 
-          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+          <div
             style={{ background: "#fff", borderRadius: 24, padding: 44, position: "relative", boxShadow: "var(--shadow-dark-card)", maxWidth: 720 }}>
             <span style={{ position: "absolute", top: -20, left: 24, fontWeight: 900, fontSize: 160, color: "rgba(182,232,53,0.08)", userSelect: "none", pointerEvents: "none", lineHeight: 1 }}>«</span>
             <p style={{ fontStyle: "italic", fontSize: 21, lineHeight: 1.6, color: "#272727", position: "relative", zIndex: 1 }}>
@@ -47,7 +36,7 @@ export default function PartnerBlock() {
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "#A3A3A3", marginTop: 2 }}>CTO X5 Tech</div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           <div style={{ textAlign: "center", marginTop: 64 }}>
             <div style={{ fontWeight: 800, fontSize: 72, color: "#B6E835", lineHeight: 1 }} className="big-stat">
@@ -58,12 +47,12 @@ export default function PartnerBlock() {
 
           <div className="direction-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 72 }}>
             {directions.map(({ Icon, title, desc }, i) => (
-              <motion.div key={title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}
+              <div key={title}
                 className="dir-card" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: 32, transition: "all 350ms ease" }}>
                 <Icon size={36} color="#B6E835" strokeWidth={1.6} />
                 <div style={{ fontWeight: 600, fontSize: 18, color: "#fff", marginTop: 16, marginBottom: 8 }}>{title}</div>
                 <div style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>{desc}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
