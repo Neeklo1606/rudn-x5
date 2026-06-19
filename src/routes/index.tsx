@@ -1,29 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
+import SiteShell from "../components/site/SiteShell";
+import Hero from "../components/site/Hero";
+import ForWhomAndInside from "../components/site/ForWhomAndInside";
+import Curriculum from "../components/site/Curriculum";
+import PartnerBlock from "../components/site/PartnerBlock";
+import Experts from "../components/site/Experts";
+import Admission from "../components/site/Admission";
+import ApplyForm from "../components/site/ApplyForm";
+import News from "../components/site/News";
+import FinalCTA from "../components/site/FinalCTA";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "РУДН × X5 Tech — Бакалавриат по ИИ" },
+      { name: "description", content: "Программа бакалавриата по искусственному интеллекту в РУДН в партнёрстве с X5 Tech. Реальные AI-проекты с первого курса." },
+      { property: "og:title", content: "РУДН × X5 Tech — Бакалавриат по ИИ" },
+      { property: "og:description", content: "Изучай ИИ. Входи в профессию вместе с X5 Tech." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <SiteShell>
+      <Hero />
+      <ForWhomAndInside />
+      <Curriculum />
+      <PartnerBlock />
+      <Experts />
+      <Admission />
+      <ApplyForm />
+      <News />
+      <FinalCTA />
+    </SiteShell>
   );
 }
