@@ -1,51 +1,41 @@
-import { motion, useInView, useMotionValue, animate } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
 
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const mv = useMotionValue(0);
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    const controls = animate(mv, to, { duration: 0.8, ease: "easeOut", onUpdate: (v) => setVal(Math.round(v)) });
-    return controls.stop;
-  }, [to, mv]);
-  return <span>{val}{suffix}</span>;
+  return <span>{to}{suffix}</span>;
 }
 
 export default function Hero() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
   return (
-    <section ref={ref} id="hero" className="hero-section" style={{ background: "#fff", padding: "56px 0 72px", marginTop: 72 }}>
+    <section id="hero" className="hero-section" style={{ background: "#fff", padding: "56px 0 72px", marginTop: 72 }}>
       <div className="container">
         <div className="hero-grid" style={{ display: "flex", gap: 48, alignItems: "stretch" }}>
           <div className="hero-left" style={{ flex: "0 0 calc(55% - 24px)", display: "flex", flexDirection: "column", gap: 24 }}>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4 }} style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
               {["РУДН", "X5 TECH", "МИНЦИФРЫ", "АНАЛИТИЧЕСКИЙ ЦЕНТР"].map((t, i) => (
                 <div key={t} style={{ display: "flex", alignItems: "center", gap: 20 }}>
                   <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: 0.5, color: "#A3A3A3" }}>{t}</span>
                   {i < 3 && <span style={{ width: 2, height: 2, background: "#A3A3A3", borderRadius: "50%" }} />}
                 </div>
               ))}
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.12 }}>
+            <div>
               <span style={{ display: "inline-flex", background: "var(--lavender-soft)", color: "#A79FFF", padding: "6px 14px", borderRadius: 999, fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 0.8 }}>
                 Бакалавриат · Очно · 4 года
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.24 }}
+            <h1
               style={{ fontWeight: 800, fontSize: 52, lineHeight: 1.05, letterSpacing: -1, color: "#272727", maxWidth: 620 }} className="hero-h1">
               Изучай <span className="ai-accent" style={{ color: "#B6E835", borderBottom: "2px solid #B6E835", paddingBottom: 2 }}>ИИ</span>. Входи в профессию вместе с X5 Tech.
-            </motion.h1>
+            </h1>
 
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.36 }}
+            <p
               style={{ fontSize: 16, lineHeight: 1.6, color: "#6B6B6B", maxWidth: 520 }}>
               Математика, программирование и реальные ИИ-задачи в партнёрстве с X5 Tech — работай с первого курса над проектами, которые приносят бизнесу измеримый результат.
-            </motion.p>
+            </p>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.48 }}
+            <div
               className="hero-buttons" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               <a href="#apply" className="btn-primary" style={{ background: "#B6E835", color: "#272727", fontWeight: 600, fontSize: 15, padding: "14px 30px", borderRadius: 999, border: "none", cursor: "pointer", transition: "all 250ms ease", display: "inline-block" }}>
                 Подать заявку
@@ -53,9 +43,9 @@ export default function Hero() {
               <a href="#apply" className="btn-outline" style={{ background: "transparent", border: "2px solid #272727", color: "#272727", fontWeight: 600, fontSize: 15, padding: "12px 28px", borderRadius: 999, cursor: "pointer", transition: "all 250ms ease", display: "inline-block" }}>
                 Проконсультироваться
               </a>
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.6 }}
+            <div
               className="stats-row" style={{ display: "flex", gap: 40, flexWrap: "wrap", marginTop: 4 }}>
               {[
                 { n: 25, s: "", l: "бюджетных мест" },
@@ -64,15 +54,15 @@ export default function Hero() {
               ].map((st) => (
                 <div key={st.l}>
                   <div style={{ fontWeight: 700, fontSize: 30, color: "#B6E835", lineHeight: 1 }}>
-                    {inView ? <Counter to={st.n} suffix={st.s} /> : 0}
+                    <Counter to={st.n} suffix={st.s} />
                   </div>
                   <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "#A3A3A3", textTransform: "lowercase", letterSpacing: 0.5, marginTop: 6 }}>{st.l}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div initial={{ opacity: 0, x: 60 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.3 }}
+          <div
             style={{ flex: "0 0 calc(45% - 24px)", background: "#272727", borderRadius: 28, padding: "36px 32px", position: "relative", boxShadow: "var(--shadow-dark-card)", overflow: "hidden" }} className="hero-dark-card">
             <div style={{ position: "absolute", top: 32, left: 32, width: 48, height: 3, background: "#B6E835" }} />
             <h3 style={{ fontWeight: 700, fontSize: 22, lineHeight: 1.3, color: "#fff", marginTop: 36 }}>
@@ -89,7 +79,7 @@ export default function Hero() {
               ))}
             </ul>
             <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 4, background: "linear-gradient(90deg, #B6E835, #A79FFF)", borderRadius: "0 0 28px 28px" }} />
-          </motion.div>
+          </div>
         </div>
       </div>
       <style>{`
