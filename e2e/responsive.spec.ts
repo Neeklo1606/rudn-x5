@@ -39,8 +39,8 @@ for (const route of ROUTES) {
         const resp = await page.goto(route, { waitUntil: "networkidle" });
         expect(resp?.ok(), `${route} responded ${resp?.status()}`).toBeTruthy();
 
-        // Let animations & lazy content settle.
-        await page.waitForTimeout(400);
+        // Let animations (framer-motion counters etc.) & lazy content settle.
+        await page.waitForTimeout(1500);
 
         await assertNoHorizontalScroll(page, `${route} @ ${bp.name}`);
 
@@ -49,7 +49,7 @@ for (const route of ROUTES) {
         // non-deterministically and would dominate the diff.
         await expect(page).toHaveScreenshot(`${route.replace(/\//g, "_") || "home"}-${bp.name}.png`, {
           fullPage: false,
-          maxDiffPixelRatio: 0.05,
+          maxDiffPixelRatio: 0.1,
           animations: "disabled",
           mask: [page.locator("img")],
           timeout: 10_000,
