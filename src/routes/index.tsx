@@ -3,7 +3,9 @@ import SiteShell from "../components/site/SiteShell";
 import Hero from "../components/site/Hero";
 import ForWhomAndInside from "../components/site/ForWhomAndInside";
 import Curriculum from "../components/site/Curriculum";
+import Tracks from "../components/site/Tracks";
 import PartnerBlock from "../components/site/PartnerBlock";
+import X5Touch from "../components/site/X5Touch";
 import Experts from "../components/site/Experts";
 import Admission from "../components/site/Admission";
 import ApplyForm from "../components/site/ApplyForm";
@@ -28,11 +30,13 @@ function Index() {
       <Hero />
       <ForWhomAndInside />
       <Curriculum />
+      <Tracks />
       <PartnerBlock />
+      <X5Touch />
+      <News />
       <Experts />
       <Admission />
       <ApplyForm />
-      <News />
       <FinalCTA />
     </SiteShell>
   );
