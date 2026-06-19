@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { label: "Программа", href: "#program" },
@@ -34,9 +33,15 @@ function LogoBlock({ text }: { text: string }) {
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
+    const onScroll = () => {
+      const next = window.scrollY > 100;
+      if (next === scrolledRef.current) return;
+      scrolledRef.current = next;
+      setScrolled(next);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -55,7 +60,7 @@ export default function Header() {
         backdropFilter: scrolled ? "blur(12px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "1px solid transparent",
-        transition: "all 300ms ease",
+        transition: "background-color 200ms ease, border-color 200ms ease, backdrop-filter 200ms ease",
       }}
     >
       <div
@@ -136,13 +141,9 @@ export default function Header() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      {open && (
+          <div
+            className="mobile-menu-panel"
             style={{
               position: "fixed",
               inset: 0,
@@ -182,9 +183,8 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       <style>{`
         .nav-link::after {
@@ -203,6 +203,8 @@ export default function Header() {
           transform: scale(1.03);
           box-shadow: 0 4px 16px rgba(182,232,53,0.3);
         }
+        .mobile-menu-panel { animation: menu-in 180ms ease-out; }
+        @keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
         @media (max-width: 900px) {
           .desktop-nav { display: none !important; }
           .desktop-cta { display: none !important; }
