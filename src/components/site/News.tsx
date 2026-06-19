@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 const news: { cat: string; date: string; title: string; desc: string; img: string }[] = [
   {
     cat: "События", date: "15 июня 2026",
@@ -29,9 +27,9 @@ export default function News() {
         <h2 style={{ fontWeight: 700, fontSize: 44, color: "#272727", marginBottom: 48 }} className="h2-big">Новости программы</h2>
 
         <div className="news-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
-          {news.map(({ cat, date, title, desc, img }, i) => (
-            <motion.article key={title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="news-card" style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "var(--shadow-card)", transition: "all 350ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+          {news.map(({ cat, date, title, desc, img }) => (
+            <article key={title}
+              className="news-card" style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "var(--shadow-card)", transition: "box-shadow 250ms ease" }}>
               <div style={{ height: 200, overflow: "hidden", position: "relative" }}>
                 <img src={img} alt={title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 500ms ease" }} className="news-img" />
               </div>
@@ -41,7 +39,7 @@ export default function News() {
                 <h3 style={{ fontWeight: 600, fontSize: 18, color: "#272727", lineHeight: 1.3, marginBottom: 8, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{title}</h3>
                 <p style={{ fontSize: 14, color: "#6B6B6B", lineHeight: 1.55, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{desc}</p>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
 
@@ -52,7 +50,7 @@ export default function News() {
         </div>
       </div>
       <style>{`
-        .news-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card-hover); }
+        .news-card:hover { box-shadow: var(--shadow-card-hover); }
         .news-card:hover .news-img { transform: scale(1.05); }
         .all-news:hover { background: #272727; color: #fff !important; }
         @media (max-width: 1024px) {

@@ -38,7 +38,7 @@ export default function ApplyForm() {
   return (
     <section id="apply" style={{ background: "#F1F1F1", padding: "120px 0" }}>
       <div className="container">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+        <div
           style={{ background: "#fff", borderRadius: 32, padding: 56, maxWidth: 640, margin: "0 auto", boxShadow: "var(--shadow-card)", position: "relative" }} className="form-card">
           <span style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 120, height: 4, background: "#B6E835", borderRadius: "0 0 4px 4px" }} />
           <AnimatePresence mode="wait">
@@ -75,7 +75,7 @@ export default function ApplyForm() {
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
       <style>{`
         .apply-input:focus { border-color: #B6E835 !important; box-shadow: 0 0 0 4px rgba(182,232,53,0.12); }

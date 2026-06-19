@@ -1,6 +1,3 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-
 const examRows: [string, number, number][] = [
   ["Математика (профиль)", 65, 45],
   ["Русский язык", 65, 42],
@@ -17,9 +14,6 @@ const timeline: [string, string, string][] = [
 ];
 
 export default function Admission() {
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 70%", "end 40%"] });
-  const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return (
     <section id="admission" style={{ background: "#fff" }} className="section">
       <div className="container">
@@ -66,17 +60,13 @@ export default function Admission() {
 
           <div style={{ flex: "0 0 calc(45% - 32px)" }}>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", marginBottom: 24 }}>ЭТАПЫ</div>
-            <div ref={timelineRef} style={{ position: "relative" }}>
+            <div style={{ position: "relative" }}>
               <div style={{ position: "absolute", left: 8, top: 8, bottom: 8, width: 2, background: "#E0E0E0" }} />
-              <motion.div style={{ position: "absolute", left: 8, top: 8, width: 2, background: "#B6E835", height: progressHeight }} />
+              <div style={{ position: "absolute", left: 8, top: 8, bottom: 8, width: 2, background: "#B6E835" }} />
               {timeline.map(([d, t, det], i) => (
                 <div key={d} className="timeline-step" style={{ display: "flex", alignItems: "flex-start", gap: 20, paddingBottom: 32, position: "relative" }}>
-                  <motion.span
-                    initial={{ scale: 0.6 }}
-                    whileInView={{ scale: 1, background: "#B6E835", borderColor: "#B6E835" }}
-                    viewport={{ once: false, margin: "-30% 0px -40% 0px" }}
-                    transition={{ duration: 0.4 }}
-                    style={{ width: 18, height: 18, borderRadius: "50%", background: "#fff", border: "2px solid #E0E0E0", flexShrink: 0, marginTop: 2, zIndex: 1, display: "block" }}
+                  <span
+                    style={{ width: 18, height: 18, borderRadius: "50%", background: "#B6E835", border: "2px solid #B6E835", flexShrink: 0, marginTop: 2, zIndex: 1, display: "block" }}
                   />
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "#A3A3A3", marginBottom: 4 }}>{d}</div>

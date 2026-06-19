@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -60,12 +59,10 @@ export default function Experts() {
           }}
         >
           {experts.map((e, i) => (
-            <motion.div
+            <div
               key={e.name}
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: (i % 4) * 0.06, duration: 0.45 }}
               className="expert-card"
-              style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "var(--shadow-card)", position: "relative", transition: "all 350ms cubic-bezier(0.22, 1, 0.36, 1)", scrollSnapAlign: "start", display: "flex", flexDirection: "column" }}
+              style={{ background: "#fff", borderRadius: 20, overflow: "hidden", boxShadow: "var(--shadow-card)", position: "relative", transition: "box-shadow 250ms ease", scrollSnapAlign: "start", display: "flex", flexDirection: "column" }}
             >
               <span className="top-border" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: colors[i % 3], borderRadius: "20px 20px 0 0", zIndex: 2 }} />
               <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", overflow: "hidden", background: "#F0F0F0" }}>
@@ -77,13 +74,13 @@ export default function Experts() {
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "#A3A3A3", marginTop: 2 }}>{e.org}</div>
                 <span style={{ alignSelf: "flex-start", marginTop: 12, padding: "4px 12px", background: "rgba(167,159,255,0.12)", color: "#A79FFF", fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: 0.5, borderRadius: 999 }}>{e.exp}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
       <style>{`
         .expert-slider::-webkit-scrollbar { display: none; }
-        .expert-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+        .expert-card:hover { box-shadow: var(--shadow-card-hover); }
         .expert-card:hover .expert-photo { transform: scale(1.04); }
         .exp-nav:hover { background: #272727 !important; }
         .exp-nav:hover svg { stroke: #fff; }
