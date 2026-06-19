@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import { Languages, Eye, Network, ChevronDown } from "lucide-react";
 
 type TrackKey = "nlp" | "cv" | "trans";
@@ -112,8 +112,8 @@ function TransDemo() {
     <div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "center", gap: 14, padding: "20px 8px" }}>
         {["Пользователь", "ML-модель", "Рекомендация"].map((label, i) => (
-          <>
-            <motion.div key={label}
+          <Fragment key={label}>
+            <motion.div
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.15 }}
               style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 14, padding: "18px 12px", textAlign: "center" }}>
               <div style={{ width: 32, height: 32, borderRadius: "50%", margin: "0 auto 10px", background: i === 1 ? "#B6E835" : "rgba(167,159,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: i === 1 ? "#272727" : "#A79FFF", fontWeight: 700, fontFamily: "var(--font-mono)", fontSize: 12 }}>
@@ -122,7 +122,7 @@ function TransDemo() {
               <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "rgba(255,255,255,0.7)", letterSpacing: 0.3 }}>{label}</div>
             </motion.div>
             {i < 2 && (
-              <div key={`arr-${i}`} style={{ position: "relative", height: 2, background: "rgba(255,255,255,0.1)" }}>
+              <div style={{ position: "relative", height: 2, background: "rgba(255,255,255,0.1)" }}>
                 <motion.div
                   initial={{ left: "0%" }} animate={{ left: "100%" }}
                   transition={{ repeat: Infinity, duration: 1.6, delay: i * 0.4, ease: "linear" }}
@@ -130,7 +130,7 @@ function TransDemo() {
                 />
               </div>
             )}
-          </>
+          </Fragment>
         ))}
       </div>
       <div style={{ marginTop: 16, padding: 16, background: "rgba(255,255,255,0.04)", borderRadius: 12, fontFamily: "var(--font-mono)", fontSize: 12, color: "rgba(255,255,255,0.6)" }}>
