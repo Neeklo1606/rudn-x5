@@ -82,12 +82,10 @@ export default function AIWidget() {
         )}
       </AnimatePresence>
       {!open && (
-        <motion.button
+        <button
           aria-label="Открыть чат"
           onClick={() => setOpen(true)}
-          animate={{ scale: [1, 1.04, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.08 }}
+          className="chat-trigger"
           style={{
             width: 56,
             height: 56,
@@ -102,13 +100,14 @@ export default function AIWidget() {
           }}
         >
           <MessageCircle size={24} color="#fff" />
-        </motion.button>
+        </button>
       )}
       <style>{`
         @media (max-width: 768px) {
           .ai-widget { bottom: 20px !important; right: 20px !important; }
           .chat-panel { width: calc(100vw - 40px) !important; height: 480px !important; }
         }
+        .chat-trigger:hover { transform: scale(1.04); }
       `}</style>
     </div>
   );
