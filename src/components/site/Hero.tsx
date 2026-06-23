@@ -1,107 +1,169 @@
-import { Check } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  return <span>{to}{suffix}</span>;
-}
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
 
 export default function Hero() {
   return (
-    <section id="hero" className="hero-section" style={{ background: "#fff", padding: "56px 0 72px", marginTop: 72 }}>
-      <div className="container">
+    <section
+      id="hero"
+      className="hero-section"
+      style={{
+        background: "#272727",
+        position: "relative",
+        overflow: "hidden",
+        padding: "80px 0",
+        marginTop: 72,
+      }}
+    >
+      <div className="hero-bg-glow" aria-hidden="true" />
+
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="hero-grid" style={{ display: "flex", gap: 48, alignItems: "stretch" }}>
-          <div className="hero-left" style={{ flex: "0 0 calc(55% - 24px)", display: "flex", flexDirection: "column", gap: 24 }}>
-            <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-              {["РУДН", "X5 TECH", "МИНЦИФРЫ", "АНАЛИТИЧЕСКИЙ ЦЕНТР"].map((t, i) => (
-                <div key={t} style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: 0.5, color: "#A3A3A3" }}>{t}</span>
-                  {i < 3 && <span style={{ width: 2, height: 2, background: "#A3A3A3", borderRadius: "50%" }} />}
-                </div>
-              ))}
-            </div>
+          <motion.div
+            className="hero-left"
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            style={{ flex: "0 0 calc(55% - 24px)", display: "flex", flexDirection: "column", gap: 18, minWidth: 0 }}
+          >
+            <motion.div variants={fadeUp} style={{ fontFamily: "Inter, sans-serif", fontStyle: "italic", fontSize: 16, color: "rgba(255,255,255,0.6)", letterSpacing: "0.05em" }}>
+              Образовательная программа
+            </motion.div>
 
-            <div>
-              <span style={{ display: "inline-flex", background: "var(--lavender-soft)", color: "#A79FFF", padding: "6px 14px", borderRadius: 999, fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 0.8 }}>
-                Бакалавриат · Очно · 4 года
-              </span>
-            </div>
+            <motion.div variants={fadeUp} style={{ fontFamily: "Inter, sans-serif", fontSize: 20, fontWeight: 400, color: "#B6E835", marginTop: -8 }}>
+              Искусственный интеллект и разработка
+            </motion.div>
 
-            <h1
-              style={{ fontWeight: 800, fontSize: 52, lineHeight: 1.05, letterSpacing: -1, color: "#272727", maxWidth: 620 }} className="hero-h1">
-              Изучай <span className="ai-accent" style={{ color: "#B6E835", borderBottom: "2px solid #B6E835", paddingBottom: 2 }}>ИИ</span>. Входи в профессию вместе с X5 Tech.
-            </h1>
+            <motion.div variants={fadeUp} style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "rgba(255,255,255,0.5)", letterSpacing: "0.03em" }}>
+              x5 • rudn • минцифры • аналитический центр
+            </motion.div>
 
-            <p
-              style={{ fontSize: 16, lineHeight: 1.6, color: "#6B6B6B", maxWidth: 520 }}>
-              Математика, программирование и реальные ИИ-задачи в партнёрстве с X5 Tech — работай с первого курса над проектами, которые приносят бизнесу измеримый результат.
-            </p>
+            <motion.h1
+              variants={fadeUp}
+              className="hero-h1"
+              style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 56, lineHeight: 1.15, letterSpacing: "-0.02em", color: "#FFFFFF", margin: 0 }}
+            >
+              Изучай ИИ, входи в профессию
+              <br />
+              <span style={{ color: "#B6E835" }}>вместе с X5 Tech</span>
+            </motion.h1>
 
-            <div
-              className="hero-buttons" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <a href="#apply" className="btn-primary" style={{ background: "#B6E835", color: "#272727", fontWeight: 600, fontSize: 15, padding: "14px 30px", borderRadius: 999, border: "none", cursor: "pointer", transition: "all 250ms ease", display: "inline-block" }}>
-                Подать заявку
+            <motion.p
+              variants={fadeUp}
+              className="hero-desc"
+              style={{ fontFamily: "Inter, sans-serif", fontSize: 16, lineHeight: 1.6, color: "rgba(255,255,255,0.7)", maxWidth: 480, marginTop: 8 }}
+            >
+              Единственная в России программа бакалавриата, где AI-практика начинается на 1 курсе в реальной IT-компании. Не экскурсии — работа с боевыми ML-моделями.
+            </motion.p>
+
+            <motion.div variants={fadeUp} style={{ marginTop: 8 }}>
+              <a
+                href="#apply"
+                className="hero-cta"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  minHeight: 44,
+                  background: "#B6E835",
+                  color: "#272727",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 600,
+                  fontSize: 16,
+                  padding: "16px 36px",
+                  borderRadius: 14,
+                  transition: "transform 0.2s ease",
+                }}
+              >
+                Отправить заявку
+                <ArrowRight size={18} strokeWidth={2.5} />
               </a>
-              <a href="#apply" className="btn-outline" style={{ background: "transparent", border: "2px solid #272727", color: "#272727", fontWeight: 600, fontSize: 15, padding: "12px 28px", borderRadius: 999, cursor: "pointer", transition: "all 250ms ease", display: "inline-block" }}>
-                Проконсультироваться
-              </a>
-            </div>
+            </motion.div>
 
-            <div
-              className="stats-row" style={{ display: "flex", gap: 40, flexWrap: "wrap", marginTop: 4 }}>
-              {[
-                { n: 25, s: "", l: "бюджетных мест" },
-                { n: 80, s: "", l: "по договору" },
-                { n: 4, s: " года", l: "бакалавриат" },
-              ].map((st) => (
-                <div key={st.l}>
-                  <div style={{ fontWeight: 700, fontSize: 30, color: "#B6E835", lineHeight: 1 }}>
-                    <Counter to={st.n} suffix={st.s} />
-                  </div>
-                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "#A3A3A3", textTransform: "lowercase", letterSpacing: 0.5, marginTop: 6 }}>{st.l}</div>
-                </div>
+            <motion.div variants={fadeUp} className="hero-stats" style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 8 }}>
+              {["25 бюджетных мест", "80 по договору", "4 года — бакалавриат"].map((t) => (
+                <span
+                  key={t}
+                  style={{
+                    background: "rgba(255,255,255,0.08)",
+                    color: "#FFFFFF",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: 14,
+                    padding: "12px 20px",
+                    borderRadius: 12,
+                    minHeight: 44,
+                    display: "inline-flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {t}
+                </span>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div
-            style={{ flex: "0 0 calc(45% - 24px)", background: "#272727", borderRadius: 28, padding: "36px 32px", position: "relative", boxShadow: "var(--shadow-dark-card)", overflow: "hidden" }} className="hero-dark-card">
-            <div style={{ position: "absolute", top: 32, left: 32, width: 48, height: 3, background: "#B6E835" }} />
-            <h3 style={{ fontWeight: 700, fontSize: 22, lineHeight: 1.3, color: "#fff", marginTop: 36 }}>
+          <motion.div
+            className="hero-dark-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            style={{
+              flex: "0 0 calc(45% - 24px)",
+              position: "relative",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(182,232,53,0.15)",
+              borderRadius: 24,
+              padding: 28,
+              backdropFilter: "blur(20px)",
+              minWidth: 0,
+            }}
+          >
+            <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "#B6E835", borderRadius: "24px 0 0 24px" }} />
+            <div style={{ fontSize: 24, lineHeight: 1 }}>🧠</div>
+            <h3 style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 20, lineHeight: 1.3, color: "#FFFFFF", marginTop: 16 }}>
               AI-практика начинается на 1 курсе, а не после диплома
             </h3>
-            <ul style={{ listStyle: "none", marginTop: 24, display: "flex", flexDirection: "column", gap: 14 }}>
-              {["Реальные проекты X5 Tech с первого семестра", "Оплачиваемая стажировка в X5 Tech со 2 курса", "Кейсы в портфолио вместо абстрактных задач"].map((t) => (
-                <li key={t} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                  <span style={{ width: 22, height: 22, borderRadius: "50%", border: "2px solid #B6E835", display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
-                    <Check size={12} color="#B6E835" strokeWidth={3} />
-                  </span>
-                  <span style={{ fontSize: 14.5, lineHeight: 1.5, color: "rgba(255,255,255,0.85)" }}>{t}</span>
-                </li>
-              ))}
-            </ul>
-            <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: 4, background: "linear-gradient(90deg, #B6E835, #A79FFF)", borderRadius: "0 0 28px 28px" }} />
-          </div>
+            <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.6)", marginTop: 16 }}>
+              С первого семестра работаете с реальными ML-моделями X5 Tech. Никаких «экскурсий раз в год» — полноценная инженерная практика.
+            </p>
+          </motion.div>
         </div>
       </div>
+
       <style>{`
-        .btn-primary:hover { background: #D6F360 !important; transform: scale(1.02); box-shadow: var(--shadow-glow-lime); }
-        .btn-outline:hover { background: #272727 !important; color: #fff !important; }
-        @media (min-height: 720px) and (min-width: 1280px) {
-          .hero-section { padding: 64px 0 80px !important; }
+        .hero-bg-glow {
+          position: absolute; inset: 0;
+          background:
+            radial-gradient(circle at 20% 30%, rgba(182,232,53,0.10), transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(167,159,255,0.08), transparent 50%);
+          opacity: 0.15;
+          mix-blend-mode: screen;
+          animation: heroPulse 6s ease-in-out infinite;
         }
+        @keyframes heroPulse {
+          0%, 100% { opacity: 0.12; }
+          50% { opacity: 0.18; }
+        }
+        .hero-cta:hover { transform: scale(1.03); }
         @media (max-width: 1024px) {
-          .hero-grid { flex-direction: column; gap: 48px; }
+          .hero-grid { flex-direction: column; gap: 32px; }
           .hero-grid > div { flex: 1 1 auto !important; width: 100%; }
-          .hero-h1 { font-size: 48px !important; }
+          .hero-section { padding: 60px 0 !important; }
+          .hero-h1 { font-size: 44px !important; }
         }
-        @media (max-width: 768px) {
-          .hero-h1 { font-size: 38px !important; }
-          .hero-dark-card { padding: 32px 24px !important; border-radius: 24px !important; }
-          .hero-buttons { flex-direction: column; }
-          .hero-buttons a { width: 100%; text-align: center; }
-          .stats-row { display: grid !important; grid-template-columns: 1fr 1fr; gap: 24px !important; }
-        }
-        @media (max-width: 480px) {
-          .hero-h1 { font-size: 32px !important; letter-spacing: -0.5px !important; }
+        @media (max-width: 767px) {
+          .hero-section { padding: 40px 0 !important; }
+          .hero-h1 { font-size: 32px !important; }
+          .hero-desc { font-size: 15px !important; }
         }
       `}</style>
     </section>
