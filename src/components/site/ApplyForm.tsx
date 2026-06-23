@@ -231,10 +231,6 @@ const labelStyle = {
                     }}
                   >
                     <span
-                      onClick={() => {
-                        setF((s) => ({ ...s, agree: !s.agree }));
-                        if (err.agree) setErr((ePrev) => ({ ...ePrev, agree: undefined }));
-                      }}
                       style={{
                         width: 22,
                         height: 22,
