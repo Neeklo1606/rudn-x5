@@ -246,7 +246,7 @@ export default function Curriculum() {
               background: "linear-gradient(180deg, #B6E835 0%, #D6F360 100%)",
               boxShadow: "0 0 12px rgba(182,232,53,0.4)",
               borderRadius: 1,
-              transition: "height 0.15s linear",
+              willChange: "height",
             }}
           />
         </div>
