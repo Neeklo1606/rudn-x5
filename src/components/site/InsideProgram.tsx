@@ -1,11 +1,4 @@
-import { Calculator, Briefcase, Zap, Users, Layers, Building2, MonitorSmartphone, Server, FolderKanban, Network } from "lucide-react";
-
-const forWhom = [
-  { Icon: Calculator, title: "Сильная математика", desc: "Уверенно владеешь алгеброй и математическим анализом" },
-  { Icon: Briefcase, title: "Карьера в IT", desc: "Хочешь строить карьеру в технологической компании" },
-  { Icon: Zap, title: "Высокий темп", desc: "Готов учиться быстро и много работать" },
-  { Icon: Users, title: "Сильная среда", desc: "Ищешь окружение амбициозных людей" },
-];
+import { Layers, Building2, MonitorSmartphone, Server, FolderKanban, Network } from "lucide-react";
 
 const features = [
   { Icon: Layers, title: "2 специальности в одной программе", desc: "Computer Vision и NLP — выбери трек на 3 курсе и углубись в практику" },
@@ -16,31 +9,11 @@ const features = [
   { Icon: Network, title: "Профессиональный нетворкинг", desc: "Прямой контакт с ML-инженерами X5 Tech, стажировки и карьерные треки" },
 ];
 
-export default function ForWhomAndInside() {
+export default function InsideProgram() {
   return (
     <section style={{ background: "#F1F1F1" }} className="section">
       <div className="container">
-        <div style={{ maxWidth: 960, marginInline: "auto" }}>
-          <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ДЛЯ КОГО</div>
-          <h2 style={{ fontWeight: 700, fontSize: 40, lineHeight: 1.15, color: "#272727", marginBottom: 48 }} className="h2">Тебе к нам, если ты:</h2>
-
-          <div
-            className="for-whom-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-            {forWhom.map(({ Icon, title, desc }) => (
-              <div key={title} style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
-                <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(182,232,53,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Icon size={24} color="#272727" strokeWidth={1.8} />
-                </div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: 18, color: "#272727", marginBottom: 6 }}>{title}</div>
-                  <div style={{ fontSize: 15, lineHeight: 1.55, color: "#6B6B6B" }}>{desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ marginTop: 96 }}>
+        <div>
           <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ЧТО ВНУТРИ</div>
           <h2 style={{ fontWeight: 700, fontSize: 40, color: "#272727", marginBottom: 56 }} className="h2">Что внутри программы?</h2>
 
@@ -69,7 +42,7 @@ export default function ForWhomAndInside() {
         }
         @media (max-width: 768px) {
           .h2 { font-size: 30px !important; }
-          .feature-grid, .for-whom-grid { grid-template-columns: 1fr !important; }
+          .feature-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

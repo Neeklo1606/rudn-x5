@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import SiteShell from "../components/site/SiteShell";
 import Hero from "../components/site/Hero";
-import ForWhomAndInside from "../components/site/ForWhomAndInside";
+import ForWhom from "../components/site/ForWhom";
+import InsideProgram from "../components/site/InsideProgram";
 import Curriculum from "../components/site/Curriculum";
 import Tracks from "../components/site/Tracks";
 import PartnerBlock from "../components/site/PartnerBlock";
@@ -10,7 +11,7 @@ import Experts from "../components/site/Experts";
 import Admission from "../components/site/Admission";
 import ApplyForm from "../components/site/ApplyForm";
 import News from "../components/site/News";
-import FinalCTA from "../components/site/FinalCTA";
+import Partners from "../components/site/Partners";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,16 +29,17 @@ function Index() {
   return (
     <SiteShell>
       <Hero />
-      <ForWhomAndInside />
+      <ForWhom />
+      <InsideProgram />
       <Curriculum />
       <Tracks />
+      <Admission />
+      <Experts />
       <PartnerBlock />
       <X5Touch />
+      <Partners />
       <News />
-      <Experts />
-      <Admission />
       <ApplyForm />
-      <FinalCTA />
     </SiteShell>
   );
 }
