@@ -175,7 +175,11 @@ export default function Curriculum() {
       // pure function of geometry + scroll position and reverses perfectly.
       const dotCenters = refs.current
         .filter((el): el is HTMLDivElement => Boolean(el))
-        .map((el) => el.getBoundingClientRect().top + 16);
+        .map((el) => {
+          const dot = el.querySelector("[data-year-dot]") as HTMLElement | null;
+          const r = dot?.getBoundingClientRect();
+          return r ? r.top + r.height / 2 : el.getBoundingClientRect().top;
+        });
       const firstDot = dotCenters[0] ?? wr.top;
       const lastDot = dotCenters[dotCenters.length - 1] ?? wr.bottom;
       const railLength = Math.max(lastDot - firstDot, 1);
