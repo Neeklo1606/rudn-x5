@@ -156,7 +156,6 @@ function YearBlock({
 export default function Curriculum() {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const wrapRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLElement | null>(null);
   const fillRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
   const [expanded, setExpanded] = useState<number | null>(null);
@@ -167,25 +166,25 @@ export default function Curriculum() {
       raf = 0;
       const wrap = wrapRef.current;
       if (!wrap) return;
-      const vhCenter = window.innerHeight / 2;
+      const targetY = window.innerHeight * 0.48;
 
-      // Continuous progress fill based on wrap's scroll position.
+      // Deterministic continuous progress: same scroll position always equals
+      // the same fill, in both directions, across the whole roadmap wrap.
       const wr = wrap.getBoundingClientRect();
-      const total = wr.height;
-      const passed = Math.min(Math.max(vhCenter - wr.top, 0), total);
-      const progress = total > 0 ? passed / total : 0;
+      const progressEnd = Math.max(wr.height - targetY, 1);
+      const progress = Math.min(Math.max(-wr.top / progressEnd, 0), 1);
       if (fillRef.current) {
         fillRef.current.style.height = `${progress * 100}%`;
       }
 
-      // Active = block whose center is closest to viewport center.
+      // Active = block whose center is closest to the viewport target zone.
       let bestIdx = 0;
       let bestDist = Infinity;
       refs.current.forEach((el, i) => {
         if (!el) return;
         const r = el.getBoundingClientRect();
         const c = r.top + r.height / 2;
-        const d = Math.abs(c - vhCenter);
+        const d = Math.abs(c - targetY);
         if (d < bestDist) {
           bestDist = d;
           bestIdx = i;
