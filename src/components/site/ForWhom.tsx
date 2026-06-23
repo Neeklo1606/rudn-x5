@@ -9,7 +9,7 @@ const forWhom = [
 
 export default function ForWhom() {
   return (
-    <section style={{ background: "#F1F1F1" }} className="section">
+    <section style={{ background: "#F1F1F1", paddingBottom: 48 }} className="section">
       <div className="container">
         <div style={{ maxWidth: 960, marginInline: "auto" }}>
           <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ДЛЯ КОГО</div>

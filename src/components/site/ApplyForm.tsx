@@ -36,7 +36,7 @@ export default function ApplyForm() {
   );
 
   return (
-    <section id="apply" style={{ background: "#F1F1F1", padding: "120px 0" }}>
+    <section id="apply" style={{ background: "#F1F1F1", padding: "96px 0" }}>
       <div className="container">
         <div
           style={{ background: "#fff", borderRadius: 32, padding: 56, maxWidth: 640, margin: "0 auto", boxShadow: "var(--shadow-card)", position: "relative" }} className="form-card">

@@ -152,7 +152,7 @@ function Demo({ k }: { k: TrackKey }) {
 export default function Tracks() {
   const [open, setOpen] = useState<TrackKey | null>(null);
   return (
-    <section id="tracks" style={{ background: "#F7F9F0", padding: "120px 0" }} className="section-tracks">
+    <section id="tracks" style={{ background: "#F7F9F0", padding: "96px 0" }} className="section-tracks">
       <div style={{ height: 2, background: "linear-gradient(90deg,#B6E835,#A79FFF)", marginBottom: 120, marginTop: -120 }} />
       <div className="container">
         <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ТРЕКИ</div>
