@@ -11,7 +11,6 @@ import Experts from "../components/site/Experts";
 import Admission from "../components/site/Admission";
 import ApplyForm from "../components/site/ApplyForm";
 import News from "../components/site/News";
-import Partners from "../components/site/Partners";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +36,6 @@ function Index() {
       <Experts />
       <PartnerBlock />
       <X5Touch />
-      <Partners />
       <News />
       <ApplyForm />
     </SiteShell>
