@@ -115,7 +115,7 @@ function YearBlock({
         gridTemplateColumns: "var(--rail) 1fr",
         columnGap: 0,
         marginBottom: "var(--year-mb)",
-        paddingBottom: isLast ? 0 : 40,
+        paddingBottom: isLast ? 0 : "var(--year-pb)",
         borderBottom: isLast ? "none" : "1px solid rgba(224,224,224,0.5)",
       }}
     >
@@ -134,7 +134,6 @@ function YearBlock({
             background: active ? "#B6E835" : "#FFFFFF",
             border: `2px solid ${active ? "#B6E835" : "#E0E0E0"}`,
             boxShadow: active ? "0 0 12px rgba(182,232,53,0.35)" : "none",
-            transition: "background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
             zIndex: 2,
           }}
         />
@@ -145,8 +144,7 @@ function YearBlock({
         style={{
           minWidth: 0,
           maxWidth: 900,
-          opacity: active ? 1 : 0.55,
-          transition: "opacity 0.5s ease",
+          opacity: active ? 1 : 0.74,
         }}
       >
         {children}
@@ -158,7 +156,7 @@ function YearBlock({
 export default function Curriculum() {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const wrapRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
   const fillRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
   const [expanded, setExpanded] = useState<number | null>(null);
@@ -169,25 +167,39 @@ export default function Curriculum() {
       raf = 0;
       const wrap = wrapRef.current;
       if (!wrap) return;
-      const vhCenter = window.innerHeight / 2;
+      const targetY = window.innerHeight / 2;
 
-      // Continuous progress fill based on wrap's scroll position.
       const wr = wrap.getBoundingClientRect();
-      const total = wr.height;
-      const passed = Math.min(Math.max(vhCenter - wr.top, 0), total);
-      const progress = total > 0 ? passed / total : 0;
+
+      // Rail fill is normalized between the first and last dot, so it is a
+      // pure function of geometry + scroll position and reverses perfectly.
+      const dotCenters = refs.current
+        .filter((el): el is HTMLDivElement => Boolean(el))
+        .map((el) => {
+          const dot = el.querySelector("[data-year-dot]") as HTMLElement | null;
+          const r = dot?.getBoundingClientRect();
+          return r ? r.top + r.height / 2 : el.getBoundingClientRect().top;
+        });
+      const firstDot = dotCenters[0] ?? wr.top;
+      const lastDot = dotCenters[dotCenters.length - 1] ?? wr.bottom;
+      const railLength = Math.max(lastDot - firstDot, 1);
+      const progress = Math.min(Math.max((targetY - firstDot) / railLength, 0), 1);
+      if (railRef.current) {
+        railRef.current.style.top = `${firstDot - wr.top}px`;
+        railRef.current.style.height = `${railLength}px`;
+      }
       if (fillRef.current) {
         fillRef.current.style.height = `${progress * 100}%`;
       }
 
-      // Active = block whose center is closest to viewport center.
+      // Active = block whose center is closest to the viewport target zone.
       let bestIdx = 0;
       let bestDist = Infinity;
       refs.current.forEach((el, i) => {
         if (!el) return;
         const r = el.getBoundingClientRect();
         const c = r.top + r.height / 2;
-        const d = Math.abs(c - vhCenter);
+        const d = Math.abs(c - targetY);
         if (d < bestDist) {
           bestDist = d;
           bestIdx = i;
@@ -207,13 +219,13 @@ export default function Curriculum() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [expanded]);
 
   const setRef = (i: number) => (el: HTMLDivElement | null) => { refs.current[i] = el; };
 
   return (
-    <section ref={sectionRef} id="program" style={{ background: "#F1F1F1", padding: "100px 40px" }} className="curriculum-section">
-      <div style={{ textAlign: "center", marginBottom: 64 }}>
+    <section id="program" style={{ background: "#F1F1F1", padding: "76px 40px" }} className="curriculum-section">
+      <div style={{ textAlign: "center", marginBottom: 46 }}>
         <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 44, color: "#272727", marginBottom: 16 }} className="curriculum-h2">Программа обучения</h2>
         <p style={{ fontSize: 18, color: "rgba(39,39,39,0.6)" }}>4 года, которые превратят вас в AI-инженера</p>
       </div>
@@ -225,11 +237,12 @@ export default function Curriculum() {
       >
         {/* Continuous rail: grey base + lime progress fill */}
         <div
+          ref={railRef}
           aria-hidden
           style={{
             position: "absolute",
             top: 0,
-            bottom: 0,
+            height: "100%",
             left: "calc(var(--rail) / 2 - 1px)",
             width: 2,
             background: "#E0E0E0",
@@ -336,22 +349,25 @@ export default function Curriculum() {
       <style>{`
         .curriculum-section {
           --rail: 100px;
-          --year-mb: 64px;
+          --year-mb: 46px;
+          --year-pb: 30px;
           overflow-x: hidden;
         }
         @media (max-width: 1023px) {
           .curriculum-section {
             --rail: 64px;
-            --year-mb: 48px;
-            padding: 80px 24px !important;
+            --year-mb: 36px;
+            --year-pb: 26px;
+            padding: 64px 24px !important;
           }
           .track-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 767px) {
           .curriculum-section {
             --rail: 48px;
-            --year-mb: 40px;
-            padding: 60px 20px !important;
+            --year-mb: 30px;
+            --year-pb: 22px;
+            padding: 48px 20px !important;
           }
           .curriculum-h2 { font-size: 32px !important; }
           .year-h3 { font-size: 24px !important; }
