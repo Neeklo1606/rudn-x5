@@ -209,8 +209,8 @@ export default function Curriculum() {
   const setRef = (i: number) => (el: HTMLDivElement | null) => { refs.current[i] = el; };
 
   return (
-    <section ref={sectionRef} id="program" style={{ background: "#F1F1F1", padding: "100px 40px" }} className="curriculum-section">
-      <div style={{ textAlign: "center", marginBottom: 64 }}>
+    <section id="program" style={{ background: "#F1F1F1", padding: "76px 40px" }} className="curriculum-section">
+      <div style={{ textAlign: "center", marginBottom: 46 }}>
         <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 44, color: "#272727", marginBottom: 16 }} className="curriculum-h2">Программа обучения</h2>
         <p style={{ fontSize: 18, color: "rgba(39,39,39,0.6)" }}>4 года, которые превратят вас в AI-инженера</p>
       </div>
@@ -333,22 +333,25 @@ export default function Curriculum() {
       <style>{`
         .curriculum-section {
           --rail: 100px;
-          --year-mb: 64px;
+          --year-mb: 46px;
+          --year-pb: 30px;
           overflow-x: hidden;
         }
         @media (max-width: 1023px) {
           .curriculum-section {
             --rail: 64px;
-            --year-mb: 48px;
-            padding: 80px 24px !important;
+            --year-mb: 36px;
+            --year-pb: 26px;
+            padding: 64px 24px !important;
           }
           .track-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 767px) {
           .curriculum-section {
             --rail: 48px;
-            --year-mb: 40px;
-            padding: 60px 20px !important;
+            --year-mb: 30px;
+            --year-pb: 22px;
+            padding: 48px 20px !important;
           }
           .curriculum-h2 { font-size: 32px !important; }
           .year-h3 { font-size: 24px !important; }
