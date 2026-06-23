@@ -75,35 +75,98 @@ embeddings = model(**tokens)`}
 
 function Pill({ p }: { p: PillData }) {
   return (
-    <span style={{
-      display: "inline-block",
-      padding: "8px 16px",
-      background: p.accent ? "rgba(182,232,53,0.05)" : "#FFFFFF",
-      border: `1px solid ${p.accent ? "#B6E835" : "#E0E0E0"}`,
-      borderRadius: 20,
-      fontSize: 14,
-      color: "#272727",
-    }}>{p.label}</span>
+    <span
+      style={{
+        display: "inline-block",
+        whiteSpace: "nowrap",
+        padding: "8px 16px",
+        background: p.accent ? "rgba(182,232,53,0.05)" : "#FFFFFF",
+        border: `1px solid ${p.accent ? "#B6E835" : "#E0E0E0"}`,
+        borderRadius: 20,
+        fontSize: 14,
+        color: "#272727",
+      }}
+    >
+      {p.label}
+    </span>
   );
 }
 
 function YearBlock({
-  index, active, refCb, children,
-}: { index: number; active: boolean; refCb: (el: HTMLDivElement | null) => void; children: React.ReactNode }) {
+  index,
+  active,
+  isLast,
+  refCb,
+  children,
+}: {
+  index: number;
+  active: boolean;
+  isLast: boolean;
+  refCb: (el: HTMLDivElement | null) => void;
+  children: React.ReactNode;
+}) {
   return (
-    <div ref={refCb} data-year-index={index} style={{ position: "relative", marginBottom: 80, opacity: active ? 1 : 0.4, transition: "opacity 0.5s ease" }}>
-      <span aria-hidden style={{
-        position: "absolute",
-        left: "calc(var(--timeline-left) - var(--dot-offset))",
-        top: 8,
-        width: 16, height: 16, borderRadius: 8,
-        background: active ? "#B6E835" : "transparent",
-        border: `2px solid ${active ? "#B6E835" : "#E0E0E0"}`,
-        boxShadow: active ? "0 0 12px rgba(182,232,53,0.5)" : "none",
-        transition: "all 0.5s ease",
-        zIndex: 2,
-      }} />
-      <div style={{ maxWidth: 900, marginLeft: "var(--block-offset)" }}>
+    <div
+      ref={refCb}
+      data-year-index={index}
+      className="year-row"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "var(--rail) 1fr",
+        columnGap: 0,
+        marginBottom: "var(--year-mb)",
+        minHeight: "var(--year-min-h)",
+        paddingBottom: isLast ? 0 : 40,
+        borderBottom: isLast ? "none" : "1px solid rgba(224,224,224,0.5)",
+      }}
+    >
+      {/* Timeline rail column */}
+      <div
+        aria-hidden
+        style={{
+          position: "relative",
+          display: "grid",
+          justifyItems: "center",
+        }}
+      >
+        {/* line */}
+        <div
+          style={{
+            width: 2,
+            height: "100%",
+            background: active ? "#B6E835" : "#E0E0E0",
+            transition: "background 0.5s ease",
+          }}
+        />
+        {/* dot, centered via grid */}
+        <div
+          style={{
+            gridRow: 1,
+            gridColumn: 1,
+            alignSelf: "start",
+            marginTop: 8,
+            width: 16,
+            height: 16,
+            borderRadius: 8,
+            background: active ? "#B6E835" : "transparent",
+            border: `2px solid ${active ? "#B6E835" : "#E0E0E0"}`,
+            boxShadow: active ? "0 0 12px rgba(182,232,53,0.3)" : "none",
+            transition: "all 0.5s ease",
+          }}
+        />
+      </div>
+
+      {/* Content column */}
+      <div
+        style={{
+          minWidth: 0,
+          maxWidth: 900,
+          opacity: active ? 1 : 0.15,
+          transform: active ? "translateY(0)" : "translateY(20px)",
+          pointerEvents: active ? "auto" : "none",
+          transition: "opacity 0.5s ease, transform 0.5s ease",
+        }}
+      >
         {children}
       </div>
     </div>
@@ -112,31 +175,37 @@ function YearBlock({
 
 export default function Curriculum() {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
-  const [active, setActive] = useState(0);
+  const [revealed, setRevealed] = useState<boolean[]>([false, false, false, false]);
   const [expanded, setExpanded] = useState<number | null>(null);
 
   useEffect(() => {
-    const handler = () => {
-      const mid = window.innerHeight / 2;
-      let best = 0;
-      let bestDist = Infinity;
-      refs.current.forEach((el, i) => {
-        if (!el) return;
-        const r = el.getBoundingClientRect();
-        const center = r.top + r.height / 2;
-        const dist = Math.abs(center - mid);
-        if (dist < bestDist) { bestDist = dist; best = i; }
-      });
-      setActive(best);
-    };
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    window.addEventListener("resize", handler);
-    return () => {
-      window.removeEventListener("scroll", handler);
-      window.removeEventListener("resize", handler);
-    };
+    const observers: IntersectionObserver[] = [];
+    refs.current.forEach((el, i) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setRevealed((prev) => {
+                if (prev[i]) return prev;
+                const next = [...prev];
+                next[i] = true;
+                return next;
+              });
+              obs.disconnect();
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
+
+  // "Only one active at a time" → the latest revealed block is the active one.
+  const active = revealed.lastIndexOf(true);
 
   const setRef = (i: number) => (el: HTMLDivElement | null) => { refs.current[i] = el; };
 
@@ -147,28 +216,11 @@ export default function Curriculum() {
         <p style={{ fontSize: 18, color: "rgba(39,39,39,0.6)" }}>4 года, которые превратят вас в AI-инженера</p>
       </div>
 
-      <div className="curriculum-wrap" style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
-        {/* Timeline line */}
-        <div aria-hidden style={{
-          position: "absolute",
-          left: "var(--timeline-left)",
-          top: 0, bottom: 0,
-          width: 2,
-          background: "#E0E0E0",
-        }} />
-        {/* Active overlay line up to current year */}
-        <div aria-hidden style={{
-          position: "absolute",
-          left: "var(--timeline-left)",
-          top: 0,
-          width: 2,
-          height: `${((active + 1) / 4) * 100}%`,
-          background: "#B6E835",
-          boxShadow: "0 0 12px rgba(182,232,53,0.3)",
-          transition: "height 0.5s ease",
-        }} />
-
-        <YearBlock index={0} active={active === 0} refCb={setRef(0)}>
+      <div
+        className="curriculum-wrap"
+        style={{ position: "relative", maxWidth: 1200, margin: "0 auto", overflowX: "hidden" }}
+      >
+        <YearBlock index={0} active={active === 0} isLast={false} refCb={setRef(0)}>
           <h3 style={{ fontSize: 28, fontWeight: 700, color: "#272727", marginBottom: 8 }} className="year-h3">1 курс: Фундамент</h3>
           <p style={{ fontSize: 16, color: "rgba(39,39,39,0.6)", marginBottom: 24 }}>Математика, программирование, основы AI</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -176,7 +228,7 @@ export default function Curriculum() {
           </div>
         </YearBlock>
 
-        <YearBlock index={1} active={active === 1} refCb={setRef(1)}>
+        <YearBlock index={1} active={active === 1} isLast={false} refCb={setRef(1)}>
           <h3 style={{ fontSize: 28, fontWeight: 700, color: "#272727", marginBottom: 8 }} className="year-h3">2 курс: Треки</h3>
           <p style={{ fontSize: 16, color: "rgba(39,39,39,0.6)", marginBottom: 24 }}>Выберите своё направление</p>
           <div className="track-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
@@ -204,7 +256,7 @@ export default function Curriculum() {
           </div>
         </YearBlock>
 
-        <YearBlock index={2} active={active === 2} refCb={setRef(2)}>
+        <YearBlock index={2} active={active === 2} isLast={false} refCb={setRef(2)}>
           <h3 style={{ fontSize: 28, fontWeight: 700, color: "#272727", marginBottom: 8 }} className="year-h3">3 курс: Специализация</h3>
           <p style={{ fontSize: 16, color: "rgba(39,39,39,0.6)", marginBottom: 24 }}>Углублённое изучение выбранного трека + реальные проекты X5</p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
@@ -221,7 +273,7 @@ export default function Curriculum() {
           </div>
         </YearBlock>
 
-        <YearBlock index={3} active={active === 3} refCb={setRef(3)}>
+        <YearBlock index={3} active={active === 3} isLast refCb={setRef(3)}>
           <h3 style={{ fontSize: 28, fontWeight: 700, color: "#272727", marginBottom: 8 }} className="year-h3">4 курс: Практика</h3>
           <p style={{ fontSize: 16, color: "rgba(39,39,39,0.6)", marginBottom: 24 }}>Диплом + стажировка в X5 Tech</p>
           <div className="year4-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "center" }}>
@@ -252,27 +304,28 @@ export default function Curriculum() {
 
       <style>{`
         .curriculum-section {
-          --timeline-left: 80px;
-          --dot-offset: 7px;
-          --block-offset: 80px;
+          --rail: 120px;
+          --year-mb: 120px;
+          --year-min-h: 400px;
+          overflow-x: hidden;
         }
         @media (max-width: 1023px) {
           .curriculum-section {
-            --timeline-left: 40px;
-            --block-offset: 60px;
+            --rail: 72px;
             padding: 80px 24px !important;
           }
           .track-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 767px) {
           .curriculum-section {
-            --timeline-left: 8px;
-            --block-offset: 40px;
+            --rail: 48px;
+            --year-mb: 80px;
+            --year-min-h: 300px;
             padding: 60px 20px !important;
           }
           .curriculum-h2 { font-size: 32px !important; }
           .year-h3 { font-size: 24px !important; }
-          .track-grid { grid-template-columns: 1fr !important; }
+          .track-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
           .year4-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
