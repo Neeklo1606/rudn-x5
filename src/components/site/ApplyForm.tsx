@@ -84,7 +84,7 @@ export default function ApplyForm() {
     transition: "all 200ms ease",
   } as const;
 
-  const labelStyle = {
+const labelStyle = {
     display: "block",
     fontFamily: "var(--font-mono)",
     fontSize: 11,
