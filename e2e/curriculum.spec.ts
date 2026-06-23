@@ -20,10 +20,25 @@ async function readSnapshot(page: Page): Promise<Snapshot> {
       document.querySelectorAll("[data-year-index]")
     ) as HTMLElement[];
 
-    const lime = "rgb(182, 232, 53)";
-    const active = dots.findIndex(
-      (d) => getComputedStyle(d).backgroundColor === lime
-    );
+    // The dot has a 0.4s background transition. Pick the dot whose
+    // background is closest to lime (#B6E835) so we don't get -1 if the
+    // transition is mid-flight.
+    const target = [182, 232, 53];
+    let active = -1;
+    let bestDist = Infinity;
+    dots.forEach((d, i) => {
+      const m = getComputedStyle(d).backgroundColor.match(/\d+/g);
+      if (!m) return;
+      const [r, g, b] = m.slice(0, 3).map(Number);
+      const dist =
+        Math.abs(r - target[0]) +
+        Math.abs(g - target[1]) +
+        Math.abs(b - target[2]);
+      if (dist < bestDist) {
+        bestDist = dist;
+        active = i;
+      }
+    });
 
     const vhCenter = window.innerHeight / 2;
     const blockCenters = blocks.map((el) => {
