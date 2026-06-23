@@ -115,7 +115,7 @@ function YearBlock({
         gridTemplateColumns: "var(--rail) 1fr",
         columnGap: 0,
         marginBottom: "var(--year-mb)",
-        paddingBottom: isLast ? 0 : 40,
+        paddingBottom: isLast ? 0 : "var(--year-pb)",
         borderBottom: isLast ? "none" : "1px solid rgba(224,224,224,0.5)",
       }}
     >
@@ -134,7 +134,6 @@ function YearBlock({
             background: active ? "#B6E835" : "#FFFFFF",
             border: `2px solid ${active ? "#B6E835" : "#E0E0E0"}`,
             boxShadow: active ? "0 0 12px rgba(182,232,53,0.35)" : "none",
-            transition: "background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
             zIndex: 2,
           }}
         />
@@ -145,8 +144,7 @@ function YearBlock({
         style={{
           minWidth: 0,
           maxWidth: 900,
-          opacity: active ? 1 : 0.55,
-          transition: "opacity 0.5s ease",
+          opacity: active ? 1 : 0.74,
         }}
       >
         {children}
