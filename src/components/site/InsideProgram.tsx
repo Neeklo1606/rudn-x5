@@ -11,7 +11,7 @@ const features = [
 
 export default function InsideProgram() {
   return (
-    <section style={{ background: "#F1F1F1" }} className="section">
+    <section style={{ background: "#F1F1F1", paddingTop: 48 }} className="section">
       <div className="container">
         <div>
           <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ЧТО ВНУТРИ</div>

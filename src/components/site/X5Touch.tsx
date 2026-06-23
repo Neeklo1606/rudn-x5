@@ -175,7 +175,7 @@ function Demo({ k }: { k: Key }) {
 export default function X5Touch() {
   const [open, setOpen] = useState<Key | null>(null);
   return (
-    <section id="x5touch" style={{ background: "#F1F1F1", padding: "120px 0" }}>
+    <section id="x5touch" style={{ background: "#F1F1F1", padding: "96px 0" }}>
       <svg style={{ display: "block", width: "100%", height: 24, marginTop: -120, marginBottom: 96 }} viewBox="0 0 1200 24" preserveAspectRatio="none">
         <path d="M0,12 Q300,0 600,12 T1200,12 L1200,0 L0,0 Z" fill="#1A2035" />
       </svg>
