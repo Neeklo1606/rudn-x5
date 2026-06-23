@@ -233,11 +233,12 @@ export default function Curriculum() {
       >
         {/* Continuous rail: grey base + lime progress fill */}
         <div
+          ref={railRef}
           aria-hidden
           style={{
             position: "absolute",
             top: 0,
-            bottom: 0,
+            height: "100%",
             left: "calc(var(--rail) / 2 - 1px)",
             width: 2,
             background: "#E0E0E0",
