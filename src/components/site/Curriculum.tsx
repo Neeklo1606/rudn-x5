@@ -156,6 +156,7 @@ function YearBlock({
 export default function Curriculum() {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const wrapRef = useRef<HTMLDivElement | null>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
   const fillRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
   const [expanded, setExpanded] = useState<number | null>(null);
@@ -166,13 +167,23 @@ export default function Curriculum() {
       raf = 0;
       const wrap = wrapRef.current;
       if (!wrap) return;
-      const targetY = window.innerHeight * 0.48;
+      const targetY = window.innerHeight / 2;
 
-      // Deterministic continuous progress: same scroll position always equals
-      // the same fill, in both directions, across the whole roadmap wrap.
       const wr = wrap.getBoundingClientRect();
-      const progressEnd = Math.max(wr.height - targetY, 1);
-      const progress = Math.min(Math.max(-wr.top / progressEnd, 0), 1);
+
+      // Rail fill is normalized between the first and last dot, so it is a
+      // pure function of geometry + scroll position and reverses perfectly.
+      const dotCenters = refs.current
+        .filter((el): el is HTMLDivElement => Boolean(el))
+        .map((el) => el.getBoundingClientRect().top + 16);
+      const firstDot = dotCenters[0] ?? wr.top;
+      const lastDot = dotCenters[dotCenters.length - 1] ?? wr.bottom;
+      const railLength = Math.max(lastDot - firstDot, 1);
+      const progress = Math.min(Math.max((targetY - firstDot) / railLength, 0), 1);
+      if (railRef.current) {
+        railRef.current.style.top = `${firstDot - wr.top}px`;
+        railRef.current.style.height = `${railLength}px`;
+      }
       if (fillRef.current) {
         fillRef.current.style.height = `${progress * 100}%`;
       }
@@ -204,7 +215,7 @@ export default function Curriculum() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [expanded]);
 
   const setRef = (i: number) => (el: HTMLDivElement | null) => { refs.current[i] = el; };
 
