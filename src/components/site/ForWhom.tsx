@@ -2,10 +2,10 @@ import { Sigma, Briefcase, Zap, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const items = [
-  { Icon: Sigma, title: "Дружишь с логикой", desc: "Математика здесь не барьер, а понятный инструмент для создания алгоритмов будущего." },
-  { Icon: Briefcase, title: "Мечтаешь об IT", desc: "Получай реальный опыт в X5 Tech и строй карьеру в крупнейшем ритейле с первого курса." },
-  { Icon: Zap, title: "Любишь драйв", desc: "Интенсивная программа для тех, кто готов расти быстро и осваивать топовые технологии." },
-  { Icon: Users, title: "Ищешь своих", desc: "Попадай в комьюнити амбициозных студентов и опытных менторов из индустрии." },
+  { Icon: Sigma, key: "logic", desc: "Математика здесь не барьер, а понятный инструмент для создания алгоритмов будущего." },
+  { Icon: Briefcase, key: "it", desc: "Получай реальный опыт в X5 Tech и строй карьеру в крупнейшем ритейле с первого курса." },
+  { Icon: Zap, key: "drive", desc: "Интенсивная программа для тех, кто готов расти быстро и осваивать топовые технологии." },
+  { Icon: Users, key: "community", desc: "Попадай в комьюнити амбициозных студентов и опытных менторов из индустрии." },
 ];
 
 export default function ForWhom() {
@@ -28,10 +28,10 @@ export default function ForWhom() {
           }}
           className="fw-card"
         >
-          <div className="fw-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 20 }}>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 2, color: "#A79FFF", textTransform: "uppercase" }}>
-              // ДЛЯ КОГО
-            </div>
+          <div className="fw-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 24 }}>
+            <h2 className="fw-title" style={{ margin: 0, fontFamily: "Inter, sans-serif", fontWeight: 800, fontSize: 28, letterSpacing: "-0.02em", color: "#272727" }}>
+              тебе к нам если ты
+            </h2>
             <div className="fw-ticker" style={{ background: "#B6E835", borderRadius: 999, padding: "6px 14px", overflow: "hidden", flexShrink: 0 }}>
               <motion.div
                 animate={{ opacity: [0.7, 1, 0.7] }}
@@ -44,9 +44,9 @@ export default function ForWhom() {
           </div>
 
           <div className="fw-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-            {items.map(({ Icon, title, desc }, i) => (
+            {items.map(({ Icon, desc, key }, i) => (
               <motion.div
-                key={title}
+                key={key}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -64,7 +64,6 @@ export default function ForWhom() {
                 <div style={{ width: 36, height: 36, borderRadius: 10, background: "#B6E835", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                   <Icon size={20} color="#272727" strokeWidth={2} />
                 </div>
-                <div style={{ fontWeight: 700, fontSize: 17, color: "#272727", marginBottom: 6 }}>{title}</div>
                 <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "#6B6B6B" }}>{desc}</div>
               </motion.div>
             ))}
