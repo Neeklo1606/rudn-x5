@@ -382,6 +382,17 @@ export default function Curriculum() {
           .track-grid > div { padding: 18px !important; }
           .nlp-code { font-size: 10.5px !important; padding: 12px !important; }
         }
+        @media (max-width: 767px) {
+          .track-grid { gap: 10px !important; }
+          .track-grid > div {
+            padding: 14px 16px !important;
+            border-radius: 14px !important;
+            border-top-width: 2px !important;
+          }
+          .track-grid > div > div:nth-child(1) { font-size: 22px !important; margin-bottom: 6px !important; }
+          .track-grid > div > div:nth-child(2) { font-size: 15px !important; line-height: 1.25 !important; margin-bottom: 4px !important; letter-spacing: -0.01em; }
+          .track-grid > div > div:nth-child(3) { font-size: 12.5px !important; line-height: 1.45 !important; color: rgba(39,39,39,0.55) !important; }
+        }
         @media (max-width: 420px) {
           .curriculum-section { --rail: 40px; }
           .year-h3 { font-size: 20px !important; }
