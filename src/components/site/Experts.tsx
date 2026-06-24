@@ -226,9 +226,30 @@ export default function Experts() {
           .experts-section { padding: 56px 0 64px; }
           .section-title { font-size: 30px; }
           .section-lead { font-size: 15px; }
-          .experts-grid { grid-template-columns: 1fr; gap: 16px; }
-          .expert-body { padding: 16px 18px 20px; }
-          .expert-name { font-size: 16px; }
+          .experts-grid {
+            display: flex;
+            grid-template-columns: none;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 4px 16px 16px;
+            margin: 0 -16px;
+            scroll-padding-left: 16px;
+          }
+          .experts-grid::-webkit-scrollbar { display: none; }
+          .expert-card {
+            flex: 0 0 78%;
+            max-width: 280px;
+            scroll-snap-align: start;
+          }
+          .expert-photo-wrap { aspect-ratio: 1 / 1; }
+          .expert-body { padding: 14px 16px 16px; gap: 4px; }
+          .expert-name { font-size: 15px; }
+          .expert-role { font-size: 13px; }
+          .expert-org { margin-bottom: 6px; }
+          .expert-exp { padding-top: 8px; }
         }
       `}</style>
     </section>
