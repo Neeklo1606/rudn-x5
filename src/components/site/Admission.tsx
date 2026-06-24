@@ -105,16 +105,15 @@ export default function Admission() {
               ))}
             </div>
 
-            <div className="price-row">
-              <span className="price-label">Стоимость обучения</span>
-              <span className="price-value">225 000 ₽ / семестр</span>
-            </div>
-
-            <div className="stats-row">
+            <div className="facts-grid">
+              <div className="fact-tile fact-tile--accent">
+                <span className="fact-label">Стоимость</span>
+                <span className="fact-value">225 000 ₽ / семестр</span>
+              </div>
               {stats.map(([n, l]) => (
-                <div key={l} className="stat-pill">
-                  <span className="stat-number">{n}</span>
-                  <span className="stat-label">{l}</span>
+                <div key={l} className="fact-tile">
+                  <span className="fact-label">{l}</span>
+                  <span className="fact-value fact-value--lime">{n}</span>
                 </div>
               ))}
             </div>
