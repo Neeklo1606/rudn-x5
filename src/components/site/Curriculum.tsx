@@ -24,8 +24,8 @@ const tracks = [
   {
     accent: "#A79FFF",
     icon: "💬",
-    title: "Обработка естественного языка",
-    desc: "ChatGPT, переводчики, голосовые ассистенты. Научитесь строить языковые модели.",
+    title: "Обработка естественного\u00A0языка",
+    desc: "ChatGPT, переводчики, голосовые ассистенты. Научитесь строить языковые\u00A0модели.",
     expand: (
       <pre className="nlp-code" style={{ background: "#1A2035", color: "#B6E835", padding: 14, borderRadius: 12, fontFamily: "var(--font-mono)", fontSize: 11.5, lineHeight: 1.55, overflowX: "auto", margin: 0, whiteSpace: "pre", maxWidth: "100%" }}>
 {`from transformers import AutoModel
@@ -40,7 +40,7 @@ embeddings = model(**tokens)`}
     accent: "#B6E835",
     icon: "👁️",
     title: "Компьютерное зрение",
-    desc: "Распознавание объектов, генерация изображений. CV в ритейле с X5.",
+    desc: "Распознавание объектов, генерация изображений. CV\u00A0в\u00A0ритейле с\u00A0X5.",
     expand: (
       <div style={{ position: "relative", height: 140, borderRadius: 12, background: "linear-gradient(180deg,#2a3142,#1a2035)", overflow: "hidden" }}>
         {[
@@ -59,7 +59,7 @@ embeddings = model(**tokens)`}
     accent: "#00BFA5",
     icon: "🔄",
     title: "Рекомендательные системы",
-    desc: "Персонализация, А/Б‑тесты, прогнозирование спроса.",
+    desc: "Персонализация, А/Б‑тесты, прогнозирование\u00A0спроса.",
     expand: (
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 0" }}>
         {["Польз.", "Модель", "★"].map((l, i, arr) => (
@@ -276,24 +276,28 @@ export default function Curriculum() {
         <YearBlock index={1} active={active === 1} isLast={false} refCb={setRef(1)}>
           <h3 style={{ fontSize: 28, fontWeight: 700, color: "#272727", marginBottom: 8 }} className="year-h3">2 курс: Треки</h3>
           <p style={{ fontSize: 16, color: "rgba(39,39,39,0.6)", marginBottom: 24 }}>Выберите своё направление</p>
-          <div className="track-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div className="track-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, alignItems: "stretch" }}>
             {tracks.map((t, i) => {
               const open = expanded === i;
               return (
                 <div key={t.title}
                   onClick={() => setExpanded(open ? null : i)}
+                  className="track-card"
                   style={{
                     background: "#FFFFFF",
                     borderRadius: 16,
-                    padding: 28,
+                    padding: "30px 28px 28px",
                     borderTop: `3px solid ${t.accent}`,
                     cursor: "pointer",
-                    boxShadow: "0 2px 24px rgba(0,0,0,0.04)",
-                    minHeight: 44,
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.04), 0 8px 32px rgba(15,15,30,0.05)",
+                    transition: "transform 240ms cubic-bezier(.2,.7,.2,1), box-shadow 240ms",
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
                   }}>
-                  <div style={{ fontSize: 32, lineHeight: 1, marginBottom: 12 }}>{t.icon}</div>
-                  <div style={{ fontSize: 20, fontWeight: 700, color: "#272727", marginBottom: 8 }}>{t.title}</div>
-                  <div style={{ fontSize: 14, color: "rgba(39,39,39,0.6)", lineHeight: 1.6 }}>{t.desc}</div>
+                  <div style={{ fontSize: 32, lineHeight: 1, marginBottom: 14 }}>{t.icon}</div>
+                  <div className="track-title" style={{ fontSize: 19, fontWeight: 700, color: "#272727", marginBottom: 10, lineHeight: 1.25, letterSpacing: "-0.01em", hyphens: "manual", textWrap: "balance" as any }}>{t.title}</div>
+                  <div className="track-desc" style={{ fontSize: 14, color: "rgba(39,39,39,0.6)", lineHeight: 1.55, textWrap: "pretty" as any }}>{t.desc}</div>
                   {open && <div style={{ marginTop: 20 }}>{t.expand}</div>}
                 </div>
               );
@@ -392,6 +396,16 @@ export default function Curriculum() {
           .track-grid > div > div:nth-child(1) { font-size: 22px !important; margin-bottom: 6px !important; }
           .track-grid > div > div:nth-child(2) { font-size: 15px !important; line-height: 1.25 !important; margin-bottom: 4px !important; letter-spacing: -0.01em; }
           .track-grid > div > div:nth-child(3) { font-size: 12.5px !important; line-height: 1.45 !important; color: rgba(39,39,39,0.55) !important; }
+        }
+        @media (hover: hover) {
+          .track-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 18px 44px rgba(15,15,30,0.08) !important;
+          }
+        }
+        @media (min-width: 1024px) {
+          .track-card { min-height: 220px; }
+          .track-title { min-height: 48px; }
         }
         @media (max-width: 420px) {
           .curriculum-section { --rail: 40px; }
