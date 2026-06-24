@@ -5,43 +5,52 @@ const examRows = [
   { subject: "Математика (профиль)", budget: 65, contract: 45, role: "обязательный" },
   { subject: "Русский язык", budget: 65, contract: 42, role: "обязательный" },
   { subject: "Информатика", budget: 65, contract: 46, role: "по выбору" },
+  { subject: "Физика", budget: 65, contract: 41, role: "по выбору" },
 ];
 
-const steps = [
+type Step = {
+  title: string;
+  desc: string;
+  icon: typeof CheckCircle2;
+  budgetMark?: string;
+  contractMark?: string;
+  wideMark?: string;
+};
+
+const steps: Step[] = [
   {
-    date: "До 25 июля",
-    deadline: "18:00 мск",
-    title: "Проверь баллы ЕГЭ",
-    desc: "Сверь баллы по профильным предметам с минимальными для бюджета и контракта.",
+    title: "Проверь свои баллы ЕГЭ",
+    desc: "Убедись, что баллы по профильным предметам соответствуют минимальным.",
+    budgetMark: "17:00",
     icon: CheckCircle2,
   },
   {
-    date: "20 июня – 25 июля",
-    deadline: "до 18:00 мск 25 июля",
     title: "Подай документы",
-    desc: "Через Госуслуги, суперсервис «Поступление в вуз онлайн» или лично в приёмной комиссии РУДН.",
+    desc: "Через Госуслуги или лично в приёмной комиссии РУДН.",
+    budgetMark: "20 июня — 25 июля",
+    contractMark: "20 июня — 18 августа",
     icon: FileText,
   },
   {
-    date: "До 3 августа",
-    deadline: "обновление ежедневно в 09:00",
     title: "Следи за конкурсными списками",
-    desc: "Конкурсные списки публикуются на сайте РУДН — отслеживай свою позицию.",
+    desc: "Обновляются ежедневно на сайте РУДН.",
+    budgetMark: "До 27 июля",
+    contractMark: "До 20 августа",
     icon: ListChecks,
   },
   {
-    date: "3 августа",
-    deadline: "до 12:00 мск",
-    track: "бюджет",
     title: "Подай согласие на зачисление",
-    desc: "Оригинал аттестата и согласие на зачисление — для поступления на бюджетные места.",
+    desc: "Оригинал аттестата и согласие на зачисление — обязательное условие.",
+    budgetMark: "До 12:00 5 августа",
+    contractMark: "До 12:00 24 августа",
+    wideMark: "или оплати договор",
     icon: CalendarCheck,
   },
   {
-    date: "9 августа",
-    deadline: "приказ о зачислении",
-    title: "Ты студент РУДН",
-    desc: "Публикация приказа о зачислении. Договоры по контракту — до 20 августа.",
+    title: "Ты студент РУДН!",
+    desc: "Приказ о зачислении. Добро пожаловать в программу!",
+    budgetMark: "7 августа",
+    contractMark: "28 августа",
     icon: BadgeCheck,
   },
 ];
@@ -49,7 +58,7 @@ const steps = [
 const stats = [
   ["50", "бюджетных мест"],
   ["152", "по договору"],
-  ["4 года", "очное, бакалавриат"],
+  ["4 года", "очное обучение"],
 ];
 
 const containerVariants = {
@@ -118,8 +127,8 @@ export default function Admission() {
             <div className="facts-grid">
               <div className="fact-tile fact-tile--accent">
                 <span className="fact-label">Стоимость</span>
-                <span className="fact-value">225 000 ₽ / семестр</span>
-                <span className="fact-sub">оплата раз в семестр, фиксированная</span>
+                <span className="fact-value">500 000 ₽ / год</span>
+                <span className="fact-sub">фиксированная стоимость обучения</span>
               </div>
               {stats.map(([n, l]) => (
                 <div key={l} className="fact-tile">
@@ -136,6 +145,17 @@ export default function Admission() {
               <p className="column-caption">Ключевые даты и дедлайны приёмной кампании 2026</p>
             </div>
 
+            <div className="track-legend">
+              <div className="track-legend__item">
+                <span className="track-legend__label">Бюджет</span>
+                <span className="track-legend__date">До 25 июля</span>
+              </div>
+              <div className="track-legend__item">
+                <span className="track-legend__label">Контракт</span>
+                <span className="track-legend__date">До 18 августа</span>
+              </div>
+            </div>
+
             <div className="timeline">
               {steps.map((step, i) => {
                 const Icon = step.icon;
@@ -149,12 +169,24 @@ export default function Admission() {
                       {!isLast && <div className="timeline-line" />}
                     </div>
                     <div className="timeline-body">
-                      <div className="timeline-meta">
-                        <span className="timeline-date">{step.date}</span>
-                        {step.deadline && <span className="timeline-deadline">{step.deadline}</span>}
-                        {step.track && <span className="timeline-track">{step.track}</span>}
-                      </div>
                       <div className="timeline-title">{step.title}</div>
+                      <div className="timeline-marks">
+                        {step.budgetMark && (
+                          <span className="mark-box">
+                            <span className="mark-box__caption">Бюджет</span>
+                            {step.budgetMark}
+                          </span>
+                        )}
+                        {step.contractMark && (
+                          <span className="mark-box">
+                            <span className="mark-box__caption">Контракт</span>
+                            {step.contractMark}
+                          </span>
+                        )}
+                      </div>
+                      {step.wideMark && (
+                        <div className="mark-box mark-box--wide">{step.wideMark}</div>
+                      )}
                       <div className="timeline-desc">{step.desc}</div>
                     </div>
                   </div>
@@ -380,41 +412,66 @@ export default function Admission() {
           padding-top: 2px;
         }
 
-        .timeline-meta {
+        .track-legend {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+        .track-legend__item {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          padding: 10px 14px;
+          border: 1.5px solid #E33B3B;
+          border-radius: 12px;
+          background: rgba(227, 59, 59, 0.04);
+        }
+        .track-legend__label {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.6px;
+          text-transform: uppercase;
+          color: #E33B3B;
+          font-weight: 700;
+        }
+        .track-legend__date {
+          font-weight: 600;
+          font-size: 14px;
+          color: var(--ink);
+        }
+        .timeline-marks {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
-          gap: 6px 10px;
-          margin-bottom: 6px;
+          gap: 8px;
+          margin: 8px 0 6px;
         }
-        .timeline-date {
+        .mark-box {
+          display: inline-flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: 6px 10px;
+          border: 1.5px solid #E33B3B;
+          border-radius: 10px;
+          background: rgba(227, 59, 59, 0.04);
+          color: var(--ink);
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 1.2;
+        }
+        .mark-box__caption {
           font-family: var(--font-mono);
-          font-size: 11px;
+          font-size: 9px;
           letter-spacing: 0.5px;
           text-transform: uppercase;
-          color: var(--rudn-blue, #0066A1);
-          font-weight: 600;
+          color: #E33B3B;
+          font-weight: 700;
         }
-        .timeline-deadline {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.4px;
-          text-transform: uppercase;
-          color: var(--ink-40, #A3A3A3);
-          padding: 2px 8px;
-          border-radius: 999px;
-          background: rgba(0,0,0,0.04);
-        }
-        .timeline-track {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.4px;
-          text-transform: uppercase;
-          color: #5e8a08;
-          padding: 2px 8px;
-          border-radius: 999px;
-          background: rgba(182, 232, 53, 0.18);
-          border: 1px solid rgba(182, 232, 53, 0.35);
+        .mark-box--wide {
+          display: block;
+          margin: 4px 0 8px;
+          text-align: center;
+          font-size: 13px;
         }
 
         .timeline-title {
@@ -450,6 +507,8 @@ export default function Admission() {
           .facts-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
           .fact-value { font-size: 16px; }
           .timeline-step { gap: 12px; padding-bottom: 18px; }
+          .track-legend { gap: 8px; }
+          .mark-box { font-size: 12px; padding: 6px 8px; }
         }
       `}</style>
     </section>
