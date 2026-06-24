@@ -24,8 +24,8 @@ const tracks = [
   {
     accent: "#A79FFF",
     icon: "💬",
-    title: "Обработка естественного языка",
-    desc: "ChatGPT, переводчики, голосовые ассистенты. Научитесь строить языковые модели.",
+    title: "Обработка естественного\u00A0языка",
+    desc: "ChatGPT, переводчики, голосовые ассистенты. Научитесь строить языковые\u00A0модели.",
     expand: (
       <pre className="nlp-code" style={{ background: "#1A2035", color: "#B6E835", padding: 14, borderRadius: 12, fontFamily: "var(--font-mono)", fontSize: 11.5, lineHeight: 1.55, overflowX: "auto", margin: 0, whiteSpace: "pre", maxWidth: "100%" }}>
 {`from transformers import AutoModel
@@ -40,7 +40,7 @@ embeddings = model(**tokens)`}
     accent: "#B6E835",
     icon: "👁️",
     title: "Компьютерное зрение",
-    desc: "Распознавание объектов, генерация изображений. CV в ритейле с X5.",
+    desc: "Распознавание объектов, генерация изображений. CV\u00A0в\u00A0ритейле с\u00A0X5.",
     expand: (
       <div style={{ position: "relative", height: 140, borderRadius: 12, background: "linear-gradient(180deg,#2a3142,#1a2035)", overflow: "hidden" }}>
         {[
@@ -59,7 +59,7 @@ embeddings = model(**tokens)`}
     accent: "#00BFA5",
     icon: "🔄",
     title: "Рекомендательные системы",
-    desc: "Персонализация, А/Б‑тесты, прогнозирование спроса.",
+    desc: "Персонализация, А/Б‑тесты, прогнозирование\u00A0спроса.",
     expand: (
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 0" }}>
         {["Польз.", "Модель", "★"].map((l, i, arr) => (
