@@ -397,6 +397,16 @@ export default function Curriculum() {
           .track-grid > div > div:nth-child(2) { font-size: 15px !important; line-height: 1.25 !important; margin-bottom: 4px !important; letter-spacing: -0.01em; }
           .track-grid > div > div:nth-child(3) { font-size: 12.5px !important; line-height: 1.45 !important; color: rgba(39,39,39,0.55) !important; }
         }
+        @media (hover: hover) {
+          .track-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 18px 44px rgba(15,15,30,0.08) !important;
+          }
+        }
+        @media (min-width: 1024px) {
+          .track-card { min-height: 220px; }
+          .track-title { min-height: 48px; }
+        }
         @media (max-width: 420px) {
           .curriculum-section { --rail: 40px; }
           .year-h3 { font-size: 20px !important; }
