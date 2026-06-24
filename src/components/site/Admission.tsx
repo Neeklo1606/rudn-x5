@@ -41,8 +41,8 @@ const steps = [
 ];
 
 const stats = [
-  ["25", "бюджетных мест"],
-  ["80", "по договору"],
+  ["50", "бюджетных мест"],
+  ["152", "по договору"],
   ["4 года", "очное обучение"],
 ];
 
@@ -154,12 +154,12 @@ export default function Admission() {
       <style>{`
         .admission-section {
           background: #fff;
-          padding: 72px 0 88px;
+          padding: 56px 0 64px;
         }
 
         .section-header {
           max-width: 720px;
-          margin-bottom: 40px;
+          margin-bottom: 28px;
         }
 
         .section-label {
@@ -173,14 +173,14 @@ export default function Admission() {
 
         .section-title {
           font-weight: 700;
-          font-size: 44px;
+          font-size: 38px;
           color: var(--ink);
           line-height: 1.05;
-          margin-bottom: 14px;
+          margin-bottom: 10px;
         }
 
         .section-lead {
-          font-size: 17px;
+          font-size: 16px;
           line-height: 1.55;
           color: var(--ink-60);
           max-width: 560px;
@@ -197,7 +197,7 @@ export default function Admission() {
         }
 
         .admission-column {
-          padding: 40px 44px;
+          padding: 32px 36px;
         }
 
         .admission-column:first-child {
@@ -209,12 +209,12 @@ export default function Admission() {
         }
 
         .column-header {
-          margin-bottom: 28px;
+          margin-bottom: 20px;
         }
 
         .column-title {
           font-weight: 600;
-          font-size: 22px;
+          font-size: 20px;
           color: var(--ink);
           margin-bottom: 6px;
         }
@@ -254,7 +254,7 @@ export default function Admission() {
           grid-template-columns: 1fr 90px 110px;
           gap: 16px;
           align-items: center;
-          padding: 18px 22px;
+          padding: 14px 22px;
           border-bottom: 1px solid var(--line-subtle, #EBEBEB);
           transition: background 200ms ease;
         }
@@ -281,59 +281,29 @@ export default function Admission() {
           font-family: var(--font-body);
         }
 
-        .price-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          margin-top: 24px;
-          padding: 18px 22px;
+        .facts-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+          margin-top: 18px;
+        }
+        .fact-tile {
           background: #fff;
           border: 1px solid var(--line-subtle, #EBEBEB);
-          border-radius: var(--r-card-sm, 16px);
+          border-radius: 14px;
+          padding: 14px 16px;
+          display: flex; flex-direction: column; gap: 4px;
+          min-width: 0;
         }
-
-        .price-label {
-          font-size: 14px;
-          color: var(--ink-60, #6B6B6B);
+        .fact-tile--accent { background: linear-gradient(135deg, rgba(182,232,53,0.18), rgba(182,232,53,0.04)); border-color: rgba(182,232,53,0.35); }
+        .fact-label {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px;
+          text-transform: uppercase; color: var(--ink-40, #A3A3A3);
         }
-
-        .price-value {
-          font-weight: 600;
-          font-size: 18px;
-          color: var(--ink);
+        .fact-value {
+          font-weight: 700; font-size: 18px; color: var(--ink); letter-spacing: -0.01em;
         }
-
-        .stats-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-top: 16px;
-        }
-
-        .stat-pill {
-          display: inline-flex;
-          align-items: baseline;
-          gap: 8px;
-          padding: 10px 16px;
-          background: #fff;
-          border: 1px solid var(--line-subtle, #EBEBEB);
-          border-radius: var(--r-pill, 999px);
-        }
-
-        .stat-number {
-          font-weight: 700;
-          font-size: 18px;
-          color: var(--lime, #B6E835);
-        }
-
-        .stat-label {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.4px;
-          text-transform: uppercase;
-          color: var(--ink-40, #A3A3A3);
-        }
+        .fact-value--lime { color: #5e8a08; }
 
         .timeline {
           position: relative;
@@ -342,7 +312,7 @@ export default function Admission() {
         .timeline-step {
           display: flex;
           gap: 18px;
-          padding-bottom: 28px;
+          padding-bottom: 22px;
           position: relative;
         }
 
@@ -402,26 +372,26 @@ export default function Admission() {
         }
 
         @media (max-width: 1024px) {
-          .admission-section { padding: 64px 0 72px; }
-          .section-title { font-size: 36px; }
+          .admission-section { padding: 48px 0 56px; }
+          .section-title { font-size: 32px; }
           .admission-card { grid-template-columns: 1fr; }
-          .admission-column { padding: 32px; }
+          .admission-column { padding: 26px 28px; }
           .admission-column:first-child { border-right: none; border-bottom: 1px solid var(--line-subtle, #EBEBEB); }
         }
 
         @media (max-width: 640px) {
-          .section-title { font-size: 30px; }
+          .section-title { font-size: 26px; }
           .section-lead { font-size: 15px; }
-          .admission-column { padding: 24px; }
-          .column-title { font-size: 19px; }
+          .admission-column { padding: 22px 20px; }
+          .column-title { font-size: 18px; }
           .exam-thead,
-          .exam-row { grid-template-columns: 1fr 64px 86px; padding: 14px 16px; gap: 10px; }
+          .exam-row { grid-template-columns: 1fr 56px 80px; padding: 12px 14px; gap: 8px; }
           .exam-subject { font-size: 14px; }
           .exam-score { font-size: 16px; }
           .exam-role { font-size: 12px; }
-          .price-row { flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px; }
-          .price-value { font-size: 17px; }
-          .timeline-step { gap: 14px; padding-bottom: 22px; }
+          .facts-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+          .fact-value { font-size: 16px; }
+          .timeline-step { gap: 12px; padding-bottom: 18px; }
         }
       `}</style>
     </section>
