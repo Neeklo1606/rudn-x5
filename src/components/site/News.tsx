@@ -39,8 +39,8 @@ export default function News() {
             <h2 className="h2-big news-h2">Новости программы</h2>
           </div>
           <div className="news-controls">
-            <button aria-label="Назад" onClick={() => scrollBy(-1)} className="news-nav-btn"><ChevronLeft size={20} /></button>
-            <button aria-label="Вперёд" onClick={() => scrollBy(1)} className="news-nav-btn"><ChevronRight size={20} /></button>
+            <button aria-label="Назад" onClick={() => scrollBy(-1)} className="news-nav-btn news-nav-btn--desktop"><ChevronLeft size={20} /></button>
+            <button aria-label="Вперёд" onClick={() => scrollBy(1)} className="news-nav-btn news-nav-btn--desktop"><ChevronRight size={20} /></button>
             <Link to="/news" className="all-news-link">Все новости →</Link>
           </div>
         </div>
@@ -162,6 +162,7 @@ export default function News() {
           .news-modal-body { padding: 22px 20px 26px; }
           .news-modal-title { font-size: 22px; }
           .news-controls { width: 100%; justify-content: flex-end; }
+          .news-nav-btn--desktop { display: none !important; }
         }
       `}</style>
     </section>
