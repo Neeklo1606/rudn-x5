@@ -75,9 +75,9 @@ export default function ApplyForm() {
   const inputBase = {
     width: "100%",
     border: "2px solid #E0E0E0",
-    borderRadius: 14,
-    padding: "0 18px",
-    fontSize: 16,
+    borderRadius: 12,
+    padding: "0 16px",
+    fontSize: 15,
     color: "#272727",
     background: "#fff",
     outline: "none",
@@ -97,8 +97,8 @@ export default function ApplyForm() {
   const errorStyle = {
     fontSize: 12,
     color: "#E9423A",
-    marginTop: 6,
-    minHeight: 16,
+    marginTop: 4,
+    minHeight: 14,
   } as const;
 
   const renderTextInput = (
@@ -123,7 +123,7 @@ export default function ApplyForm() {
           className="apply-input"
           style={{
             ...inputBase,
-            height: 56,
+            height: 50,
             borderColor: hasError ? "#E9423A" : "#E0E0E0",
           }}
         />
@@ -211,13 +211,13 @@ export default function ApplyForm() {
                       value={f.comment}
                       onChange={(e) => setF((s) => ({ ...s, comment: e.target.value }))}
                       onBlur={() => markTouched("comment")}
-                      rows={4}
+                      rows={3}
                       className="apply-input"
                       style={{
                         ...inputBase,
-                        padding: "14px 18px",
+                        padding: "12px 16px",
                         resize: "vertical",
-                        minHeight: 110,
+                        minHeight: 88,
                         borderColor: commentError ? "#E9423A" : "#E0E0E0",
                       }}
                     />
@@ -285,15 +285,15 @@ export default function ApplyForm() {
                     type="submit"
                     className="submit-btn"
                     style={{
-                      marginTop: 4,
+                      marginTop: 6,
                       width: "100%",
-                      height: 56,
+                      height: 52,
                       background: "#B6E835",
                       color: "#272727",
                       border: "none",
-                      borderRadius: 14,
+                      borderRadius: 12,
                       fontWeight: 600,
-                      fontSize: 16,
+                      fontSize: 15,
                       cursor: "pointer",
                       transition: "all 250ms ease",
                     }}
@@ -338,7 +338,7 @@ export default function ApplyForm() {
         .apply-input:focus { border-color: #B6E835 !important; box-shadow: 0 0 0 4px rgba(182,232,53,0.12); }
         .submit-btn:hover { background: #D6F360 !important; transform: scale(1.01); box-shadow: var(--shadow-glow-lime); }
         @media (max-width: 768px) {
-          .form-card { padding: 32px 24px !important; }
+          .form-card { padding: 26px 20px !important; border-radius: 22px !important; }
           .form-name-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
