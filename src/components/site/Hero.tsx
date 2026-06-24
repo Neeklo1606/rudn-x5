@@ -17,7 +17,6 @@ const INK = "#272727";
 const RUDN_BLUE = "#004A99";
 const CANVAS = "#F7F9F0";
 
-const CHIPS = ["x5", "rudn", "минцифры", "аналитический центр"];
 const STATS: Array<{ value: string; suffix?: string; label: string }> = [
   { value: "50", label: "бюджетных мест" },
   { value: "152", label: "по договору" },
@@ -49,23 +48,6 @@ export default function Hero() {
               animate="show"
             >
               <div>
-                {/* Logos */}
-                <motion.div variants={fadeUp} className="hero-logos">
-                  <div className="hero-logo">
-                    <span className="hero-logo-mark hero-logo-mark--x5">X5</span>
-                    <span className="hero-logo-text">
-                      X5 <span style={{ color: "#9aa0a6", fontWeight: 500 }}>Tech</span>
-                    </span>
-                  </div>
-                  <span className="hero-logo-divider" />
-                  <div className="hero-logo">
-                    <span className="hero-logo-mark hero-logo-mark--rudn" />
-                    <span className="hero-logo-text" style={{ color: RUDN_BLUE }}>
-                      RUDN
-                    </span>
-                  </div>
-                </motion.div>
-
                 {/* Program label */}
                 <motion.div variants={fadeUp} className="hero-label">
                   <span className="hero-label-eyebrow">Образовательная программа</span>
@@ -90,16 +72,6 @@ export default function Hero() {
                     Отправить заявку
                     <ArrowRight size={18} strokeWidth={2.5} />
                   </a>
-                  <a href="#apply" className="hero-cta-secondary">
-                    Проконсультироваться
-                  </a>
-                </motion.div>
-
-                {/* Chips */}
-                <motion.div variants={fadeUp} className="hero-chips">
-                  {CHIPS.map((c) => (
-                    <span key={c} className="hero-chip">#{c}</span>
-                  ))}
                 </motion.div>
               </div>
 
