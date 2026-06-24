@@ -11,6 +11,7 @@ const links = [
 function LogoBlock({ text }: { text: string }) {
   return (
     <div
+      className="header-logo-block"
       style={{
         width: 100,
         height: 40,
@@ -220,6 +221,9 @@ export default function Header() {
           .desktop-nav { display: none !important; }
           .desktop-cta { display: none !important; }
           .hamburger { display: flex !important; }
+        }
+        @media (max-width: 480px) {
+          .header-logo-block { width: 78px !important; height: 34px !important; font-size: 12px !important; }
         }
       `}</style>
     </header>

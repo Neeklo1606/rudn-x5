@@ -204,6 +204,7 @@ export default function Hero() {
           -webkit-background-clip: text; background-clip: text;
           color: transparent;
           white-space: nowrap;
+          display: inline-block;
         }
 
         .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
@@ -301,9 +302,13 @@ export default function Hero() {
           .hero-stat-value { font-size: 22px; }
           .hero-stat-suffix { font-size: 13px; }
           .hero-stat-label { font-size: 10px; letter-spacing: 0.08em; }
-          .hero-right { min-height: 240px; }
-          .hero-float--lime { top: 20px; right: 20px; font-size: 12px; padding: 10px 12px; }
-          .hero-float--glass { left: 20px; right: 20px; bottom: 20px; max-width: none; }
+          .hero-right { min-height: 220px; padding: 20px 0; }
+          .hero-float--lime { top: 16px; right: 16px; font-size: 11px; padding: 8px 11px; }
+          .hero-float--glass { display: none; }
+        }
+        @media (max-width: 380px) {
+          .hero-h1 { font-size: 28px; }
+          .hero-stat-value { font-size: 20px; }
         }
       `}</style>
     </section>

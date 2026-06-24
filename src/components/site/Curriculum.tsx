@@ -224,10 +224,10 @@ export default function Curriculum() {
   const setRef = (i: number) => (el: HTMLDivElement | null) => { refs.current[i] = el; };
 
   return (
-    <section id="program" style={{ background: "#F1F1F1", padding: "76px 40px" }} className="curriculum-section">
-      <div style={{ textAlign: "center", marginBottom: 46 }}>
-        <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 44, color: "#272727", marginBottom: 16 }} className="curriculum-h2">Программа обучения</h2>
-        <p style={{ fontSize: 18, color: "rgba(39,39,39,0.6)" }}>4 года, которые превратят вас в AI-инженера</p>
+    <section id="program" className="curriculum-section">
+      <div className="container" style={{ textAlign: "center", marginBottom: 40 }}>
+        <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 40, color: "#272727", marginBottom: 12, letterSpacing: "-0.02em" }} className="curriculum-h2 h2-big">Программа обучения</h2>
+        <p className="curriculum-lead" style={{ fontSize: 17, color: "rgba(39,39,39,0.6)" }}>4 года, которые превратят вас в AI-инженера</p>
       </div>
 
       <div
@@ -348,17 +348,20 @@ export default function Curriculum() {
 
       <style>{`
         .curriculum-section {
+          background: #F1F1F1;
+          padding: 64px 0 72px;
           --rail: 100px;
           --year-mb: 46px;
           --year-pb: 30px;
           overflow-x: hidden;
         }
+        .curriculum-wrap { padding: 0 var(--container-padding); }
         @media (max-width: 1023px) {
           .curriculum-section {
             --rail: 64px;
             --year-mb: 36px;
             --year-pb: 26px;
-            padding: 64px 24px !important;
+            padding: 56px 0 60px !important;
           }
           .track-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
@@ -367,12 +370,16 @@ export default function Curriculum() {
             --rail: 48px;
             --year-mb: 30px;
             --year-pb: 22px;
-            padding: 48px 20px !important;
+            padding: 44px 0 48px !important;
           }
-          .curriculum-h2 { font-size: 32px !important; }
+          .curriculum-lead { font-size: 14px !important; }
           .year-h3 { font-size: 24px !important; }
           .track-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
           .year4-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 420px) {
+          .curriculum-section { --rail: 40px; }
+          .year-h3 { font-size: 20px !important; }
         }
       `}</style>
     </section>

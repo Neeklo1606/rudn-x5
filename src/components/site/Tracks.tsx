@@ -152,16 +152,16 @@ function Demo({ k }: { k: TrackKey }) {
 export default function Tracks() {
   const [open, setOpen] = useState<TrackKey | null>(null);
   return (
-    <section id="tracks" style={{ background: "#F7F9F0", padding: "96px 0" }} className="section-tracks">
-      <div style={{ height: 2, background: "linear-gradient(90deg,#B6E835,#A79FFF)", marginBottom: 120, marginTop: -120 }} />
+    <section id="tracks" className="section-tracks">
+      <div className="tracks-divider" />
       <div className="container">
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ТРЕКИ</div>
-        <h2 style={{ fontWeight: 700, fontSize: 44, color: "#272727", maxWidth: 650, marginBottom: 16 }} className="h2-big">Треки второго курса – выбери направление</h2>
-        <p style={{ fontSize: 18, lineHeight: 1.7, color: "#6B6B6B", maxWidth: 620, marginBottom: 56 }}>
+        <div className="tracks-eyebrow">ТРЕКИ</div>
+        <h2 className="h2-big tracks-h2">Треки второго курса – выбери направление</h2>
+        <p className="tracks-lead">
           На 3 курсе ты выбираешь специализацию. Каждый трек – углублённая практика и реальные проекты.
         </p>
 
-        <div className="tracks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "start" }}>
+        <div className="tracks-grid">
           {tracks.map((t) => {
             const Icon = t.icon;
             const isOpen = open === t.key;
@@ -170,22 +170,23 @@ export default function Tracks() {
                 key={t.key}
                 layout={false}
                 onClick={() => setOpen(isOpen ? null : t.key)}
+                className="track-card"
                 style={{
                   cursor: "pointer", overflow: "hidden", position: "relative",
                   background: isOpen ? "#1A2035" : "#fff",
                   color: isOpen ? "#fff" : "#272727",
                   borderLeft: `4px solid ${t.color}`,
-                  borderRadius: 24,
-                  padding: isOpen ? "36px 32px 32px" : "32px 28px",
+                  borderRadius: 20,
+                  padding: isOpen ? "30px 26px 28px" : "26px 24px",
                   boxShadow: isOpen ? "var(--shadow-dark-card,0 16px 48px rgba(0,0,0,0.25))" : "var(--shadow-card)",
                   gridColumn: isOpen ? "1 / -1" : "auto",
                   transition: "background 350ms ease, color 350ms ease, padding 350ms ease, grid-column 0ms",
                 }}
               >
-                <span style={{ position: "absolute", top: 8, right: 16, fontFamily: "var(--font-mono)", fontWeight: 800, fontSize: 64, color: t.wmColor, pointerEvents: "none", letterSpacing: -2 }}>{t.watermark}</span>
-                <Icon size={36} color={isOpen ? "#B6E835" : t.color} strokeWidth={1.7} />
-                <h3 style={{ fontWeight: 700, fontSize: 22, marginTop: 18, marginBottom: 8 }}>{t.name}</h3>
-                <p style={{ fontSize: 14, lineHeight: 1.55, color: isOpen ? "rgba(255,255,255,0.7)" : "#6B6B6B" }}>{t.subtitle}</p>
+                <span className="track-watermark" style={{ color: t.wmColor }}>{t.watermark}</span>
+                <Icon size={32} color={isOpen ? "#B6E835" : t.color} strokeWidth={1.7} />
+                <h3 style={{ fontWeight: 700, fontSize: 20, marginTop: 14, marginBottom: 6, position: "relative" }}>{t.name}</h3>
+                <p style={{ fontSize: 13.5, lineHeight: 1.5, color: isOpen ? "rgba(255,255,255,0.7)" : "#6B6B6B", position: "relative" }}>{t.subtitle}</p>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -198,7 +199,7 @@ export default function Tracks() {
                       style={{ overflow: "hidden" }}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <div style={{ paddingTop: 28 }}>
+                      <div style={{ paddingTop: 22 }}>
                         <Demo k={t.key} />
                       </div>
                     </motion.div>
@@ -206,8 +207,8 @@ export default function Tracks() {
                 </AnimatePresence>
 
                 {!isOpen && (
-                  <div style={{ position: "absolute", right: 18, bottom: 18, color: "#A3A3A3" }}>
-                    <ChevronDown size={18} />
+                  <div style={{ position: "absolute", right: 16, bottom: 14, color: "#A3A3A3" }}>
+                    <ChevronDown size={16} />
                   </div>
                 )}
               </motion.div>
@@ -216,8 +217,26 @@ export default function Tracks() {
         </div>
       </div>
       <style>{`
+        .section-tracks { background: #F7F9F0; padding: 72px 0; }
+        .tracks-divider { height: 2px; background: linear-gradient(90deg,#B6E835,#A79FFF); margin-bottom: 56px; }
+        .tracks-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; color: #A79FFF; text-transform: uppercase; margin-bottom: 12px; }
+        .tracks-h2 { font-weight: 700; font-size: 40px; color: #272727; max-width: 640px; margin: 0 0 12px; letter-spacing: -0.02em; }
+        .tracks-lead { font-size: 16px; line-height: 1.6; color: #6B6B6B; max-width: 620px; margin: 0 0 32px; }
+        .tracks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; }
+        .track-watermark { position: absolute; top: 6px; right: 14px; font-family: var(--font-mono); font-weight: 800; font-size: 56px; pointer-events: none; letter-spacing: -2px; line-height: 1; }
+        @media (max-width: 1024px) {
+          .section-tracks { padding: 56px 0; }
+          .tracks-divider { margin-bottom: 40px; }
+          .tracks-lead { margin-bottom: 24px; }
+        }
         @media (max-width: 900px) {
-          .tracks-grid { grid-template-columns: 1fr !important; }
+          .tracks-grid { grid-template-columns: 1fr !important; gap: 12px; }
+        }
+        @media (max-width: 768px) {
+          .section-tracks { padding: 44px 0; }
+          .tracks-divider { margin-bottom: 32px; }
+          .tracks-lead { font-size: 14.5px; }
+          .track-watermark { font-size: 44px; }
         }
       `}</style>
     </section>
