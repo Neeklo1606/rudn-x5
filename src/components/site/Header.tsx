@@ -62,6 +62,7 @@ export default function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       style={{
         position: "fixed",
