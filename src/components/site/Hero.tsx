@@ -403,7 +403,7 @@ function HeroVisual() {
       >
         <div style={{ fontFamily: "Inter, sans-serif", fontWeight: 900, fontSize: 72, lineHeight: 1, letterSpacing: "-0.04em" }}>AI</div>
         <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: "0.32em", color: "rgba(255,255,255,0.55)", marginTop: 8 }}>
-          APPLIED RESEARCH
+          ПРИКЛАДНЫЕ ИССЛЕДОВАНИЯ
         </div>
       </div>
 
