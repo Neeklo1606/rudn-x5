@@ -59,7 +59,7 @@ function ChartDemo() {
 }
 
 const quizOpts = [
-  { t: "Персонализированные скидки на основе истории покупок", correct: true, color: "#B6E835", expl: "Верно! X5 уже внедряет персонализацию на основе ML — это увеличивает средний чек на 12%." },
+  { t: "Персонализированные скидки на основе истории покупок", correct: true, color: "#B6E835", expl: "Верно! X5 уже внедряет персонализацию на основе ML – это увеличивает средний чек на 12%." },
   { t: "Генерация музыки для плейлиста в магазине", correct: false, color: "#A79FFF", expl: "Интересно, но не приоритет. X5 фокусируется на персонализации покупок." },
   { t: "Распознавание лиц покупателей для рекламы", correct: false, color: "#FF6B6B", expl: "Этически спорно. X5 не использует биометрию для рекламы." },
 ];
@@ -127,7 +127,7 @@ function CodeDemo() {
           </div>
         ))}
       </div>
-      <p style={{ marginTop: 14, fontSize: 13, color: "rgba(255,255,255,0.55)" }}>Наведи на строку — копилот объяснит её. В X5 Tech такие инструменты ускоряют разработку в 2×.</p>
+      <p style={{ marginTop: 14, fontSize: 13, color: "rgba(255,255,255,0.55)" }}>Наведи на строку – копилот объяснит её. В X5 Tech такие инструменты ускоряют разработку в 2×.</p>
     </div>
   );
 }
@@ -142,7 +142,7 @@ function ShelfDemo() {
   ];
   return (
     <div>
-      <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 12 }}>Кликни на полку — AI обнаружит товары</p>
+      <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 12 }}>Кликни на полку – AI обнаружит товары</p>
       <div onClick={() => setTick((t) => t + 1)} style={{ position: "relative", height: 200, background: "linear-gradient(180deg,#2a3142,#1a2035)", borderRadius: 12, overflow: "hidden", cursor: "pointer", border: "1px solid rgba(255,255,255,0.08)" }}>
         <div style={{ position: "absolute", left: 0, right: 0, bottom: 30, height: 4, background: "rgba(255,255,255,0.1)" }} />
         {items.map((it, i) => (
@@ -183,7 +183,7 @@ export default function X5Touch() {
         <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>X5 TOUCH</div>
         <h2 style={{ fontWeight: 700, fontSize: 44, color: "#272727", marginBottom: 16 }} className="h2-big">Прикоснись к технологиям X5</h2>
         <p style={{ fontSize: 18, lineHeight: 1.7, color: "#6B6B6B", maxWidth: 640, marginBottom: 56 }}>
-          Четыре направления AI в X5 Tech. Кликни на карточку — увидишь, как это работает изнутри.
+          Четыре направления AI в X5 Tech. Кликни на карточку – увидишь, как это работает изнутри.
         </p>
 
         <div className="x5touch-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>

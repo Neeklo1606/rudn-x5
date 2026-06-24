@@ -114,7 +114,7 @@ export default function Hero() {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT — AI visual */}
+            {/* RIGHT – AI visual */}
             <motion.div
               className="hero-right"
               initial={{ opacity: 0 }}

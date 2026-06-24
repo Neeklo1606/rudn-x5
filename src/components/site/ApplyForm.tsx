@@ -173,7 +173,7 @@ export default function ApplyForm() {
                     marginBottom: 12,
                   }}
                 >
-                  Оставь заявку — расскажем, как поступить.
+                  Оставь заявку – расскажем, как поступить.
                 </h2>
                 <p
                   style={{

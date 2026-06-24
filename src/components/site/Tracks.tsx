@@ -55,7 +55,7 @@ function NlpDemo() {
         {nlpCode.map((line, i) => <CodeLine key={i} line={line} idx={i} />)}
       </div>
       <p style={{ marginTop: 20, fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.6)" }}>
-        Ты научишься tokenization, embeddings, fine-tuning — навыки, нужные X5 Tech для чат-ботов, поиска и аналитики отзывов.
+        Ты научишься tokenization, embeddings, fine-tuning – навыки, нужные X5 Tech для чат-ботов, поиска и аналитики отзывов.
       </p>
     </div>
   );
@@ -71,7 +71,7 @@ function CvDemo() {
   const [active, setActive] = useState<number[]>([]);
   return (
     <div>
-      <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 14 }}>Кликни на товар на полке — AI его обнаружит</p>
+      <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 14 }}>Кликни на товар на полке – AI его обнаружит</p>
       <div style={{ position: "relative", height: 240, borderRadius: 16, overflow: "hidden", background: "linear-gradient(180deg,#2a3142 0%,#1a2035 100%)", border: "1px solid rgba(255,255,255,0.08)" }}>
         <div style={{ position: "absolute", left: 0, right: 0, top: "25%", height: 4, background: "rgba(255,255,255,0.08)" }} />
         <div style={{ position: "absolute", left: 0, right: 0, top: "70%", height: 4, background: "rgba(255,255,255,0.08)" }} />
@@ -156,9 +156,9 @@ export default function Tracks() {
       <div style={{ height: 2, background: "linear-gradient(90deg,#B6E835,#A79FFF)", marginBottom: 120, marginTop: -120 }} />
       <div className="container">
         <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>ТРЕКИ</div>
-        <h2 style={{ fontWeight: 700, fontSize: 44, color: "#272727", maxWidth: 650, marginBottom: 16 }} className="h2-big">Треки второго курса — выбери направление</h2>
+        <h2 style={{ fontWeight: 700, fontSize: 44, color: "#272727", maxWidth: 650, marginBottom: 16 }} className="h2-big">Треки второго курса – выбери направление</h2>
         <p style={{ fontSize: 18, lineHeight: 1.7, color: "#6B6B6B", maxWidth: 620, marginBottom: 56 }}>
-          На 3 курсе ты выбираешь специализацию. Каждый трек — углублённая практика и реальные проекты.
+          На 3 курсе ты выбираешь специализацию. Каждый трек – углублённая практика и реальные проекты.
         </p>
 
         <div className="tracks-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, alignItems: "start" }}>

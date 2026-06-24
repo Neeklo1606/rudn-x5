@@ -119,7 +119,7 @@ function YearBlock({
         borderBottom: isLast ? "none" : "1px solid rgba(224,224,224,0.5)",
       }}
     >
-      {/* Rail column reserved — actual line/dot drawn at section level */}
+      {/* Rail column reserved – actual line/dot drawn at section level */}
       <div aria-hidden style={{ position: "relative" }}>
         <div
           data-year-dot
