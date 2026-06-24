@@ -232,12 +232,7 @@ export default function Admission() {
         }
 
         .section-label {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          letter-spacing: 1.6px;
-          text-transform: uppercase;
-          color: var(--rudn-blue, #0066A1);
-          margin-bottom: 12px;
+          /* global styles unify the eyebrow */
         }
 
         .section-title {
