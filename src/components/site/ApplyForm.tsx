@@ -135,14 +135,14 @@ export default function ApplyForm() {
   const commentError = !!(touched.comment && err.comment);
 
   return (
-    <section id="apply" style={{ background: "#F1F1F1", padding: "96px 0" }}>
+    <section id="apply" style={{ background: "#F1F1F1", padding: "64px 0 72px" }}>
       <div className="container">
         <div
           style={{
             background: "#fff",
-            borderRadius: 32,
-            padding: 56,
-            maxWidth: 640,
+            borderRadius: 26,
+            padding: "40px 44px",
+            maxWidth: 600,
             margin: "0 auto",
             boxShadow: "var(--shadow-card)",
             position: "relative",
@@ -167,33 +167,34 @@ export default function ApplyForm() {
                 <h2
                   style={{
                     fontWeight: 700,
-                    fontSize: 30,
+                    fontSize: 26,
                     color: "#272727",
                     textAlign: "center",
-                    marginBottom: 12,
+                    marginBottom: 8,
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   Оставь заявку – расскажем, как поступить.
                 </h2>
                 <p
                   style={{
-                    fontSize: 16,
+                    fontSize: 14.5,
                     color: "#6B6B6B",
                     textAlign: "center",
-                    marginBottom: 40,
+                    marginBottom: 26,
                   }}
                 >
                   Менеджер приёмной комиссии свяжется с тобой в течение дня.
                 </p>
                 <form
                   onSubmit={submit}
-                  style={{ display: "flex", flexDirection: "column", gap: 20 }}
+                  style={{ display: "flex", flexDirection: "column", gap: 14 }}
                 >
                   <div
                     style={{
                       display: "grid",
                       gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 20,
+                      gap: 14,
                     }}
                     className="form-name-grid"
                   >
