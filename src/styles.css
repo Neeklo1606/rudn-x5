@@ -110,7 +110,8 @@ a { color: inherit; text-decoration: none; }
 .tracks-h2,
 .curriculum-h2,
 .ip-title,
-.fw-title {
+.fw-title,
+.cta-h2 {
   font-family: var(--font-body);
   font-weight: 700;
   font-size: clamp(26px, 3.4vw, 40px) !important;
@@ -126,14 +127,37 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 768px) {
   .h2-big, .section-title, .partner-h2, .x5touch-h2, .news-h2, .tracks-h2,
-  .curriculum-h2, .ip-title, .fw-title { font-size: 26px !important; line-height: 1.12 !important; }
+  .curriculum-h2, .ip-title, .fw-title, .cta-h2 { font-size: 26px !important; line-height: 1.12 !important; }
 }
 @media (max-width: 420px) {
   .h2-big, .section-title, .partner-h2, .x5touch-h2, .news-h2, .tracks-h2,
-  .curriculum-h2, .ip-title, .fw-title { font-size: 23px !important; }
+  .curriculum-h2, .ip-title, .fw-title, .cta-h2 { font-size: 23px !important; }
 }
 
 /* Tap targets — ensure interactive controls hit 44px on mobile */
 @media (max-width: 768px) {
   button, a.cta-pill, .news-nav-btn, .submit-btn { min-height: 44px; }
+}
+
+/* Scroll anchors — header is fixed (h=72), keep section tops clear */
+#hero, #program, #tracks, #admission, #experts, #x5touch, #news, #apply {
+  scroll-margin-top: 88px;
+}
+
+/* Unified micro-animation token + shared card lift utility */
+:root {
+  --ease-premium: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-card: transform 240ms var(--ease-premium), box-shadow 240ms var(--ease-premium);
+}
+@media (hover: hover) {
+  .news-card, .expert-card, .dir-card, .ip-card, .track-card, .summary-tile, .x5touch-card {
+    transition: var(--t-card), background 240ms var(--ease-premium), border-color 240ms var(--ease-premium), color 240ms var(--ease-premium);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
