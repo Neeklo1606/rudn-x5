@@ -18,9 +18,9 @@ export default function PartnerBlock() {
       <section style={{ background: "#1A2035", color: "#fff", padding: "120px 0" }}>
         <div className="container">
           <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "rgba(182,232,53,0.8)", textTransform: "uppercase", marginBottom: 16 }}>ПАРТНЁР</div>
-          <h2 style={{ fontWeight: 700, fontSize: 44, color: "#fff", maxWidth: 700, marginBottom: 20 }} className="h2-big">X5 Tech — мост в реальную AI-практику.</h2>
+          <h2 style={{ fontWeight: 700, fontSize: 44, color: "#fff", maxWidth: 700, marginBottom: 20 }} className="h2-big">X5 Tech – мост в реальную AI-практику.</h2>
           <p style={{ fontSize: 18, lineHeight: 1.7, color: "rgba(255,255,255,0.65)", maxWidth: 600, marginBottom: 56 }}>
-            X5 Tech — технологическое ядро X5 Group, одного из крупнейших ритейлеров России. Команда строит AI-продукты, которые работают на миллионы покупателей каждый день.
+            X5 Tech – технологическое ядро X5 Group, одного из крупнейших ритейлеров России. Команда строит AI-продукты, которые работают на миллионы покупателей каждый день.
           </p>
 
           <div

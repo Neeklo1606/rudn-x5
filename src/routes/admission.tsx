@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import SiteShell from "../components/site/SiteShell";
 
 export const Route = createFileRoute("/admission")({
-  head: () => ({ meta: [{ title: "Поступление — РУДН × X5 Tech" }] }),
+  head: () => ({ meta: [{ title: "Поступление – РУДН × X5 Tech" }] }),
   component: () => (
     <SiteShell>
       <section style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", marginTop: 72, padding: "120px 0" }}>

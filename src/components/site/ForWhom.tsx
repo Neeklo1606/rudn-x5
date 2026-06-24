@@ -28,14 +28,9 @@ export default function ForWhom() {
           }}
           className="fw-card"
         >
-          <div className="fw-header" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16, marginBottom: 32 }}>
-            <div>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 2, color: "#A79FFF", textTransform: "uppercase", marginBottom: 10 }}>
-                // ДЛЯ КОГО
-              </div>
-              <h2 className="fw-title" style={{ fontWeight: 700, fontSize: 36, lineHeight: 1.1, color: "#272727", letterSpacing: "-0.02em" }}>
-                Тебе к нам, если ты:
-              </h2>
+          <div className="fw-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 24 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 2, color: "#A79FFF", textTransform: "uppercase" }}>
+              // ДЛЯ КОГО
             </div>
             <div className="fw-ticker" style={{ background: "#B6E835", borderRadius: 999, padding: "6px 14px", overflow: "hidden", flexShrink: 0 }}>
               <motion.div

@@ -15,9 +15,9 @@ import News from "../components/site/News";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "РУДН × X5 Tech — Бакалавриат по ИИ" },
+      { title: "РУДН × X5 Tech – Бакалавриат по ИИ" },
       { name: "description", content: "Программа бакалавриата по искусственному интеллекту в РУДН в партнёрстве с X5 Tech. Реальные AI-проекты с первого курса." },
-      { property: "og:title", content: "РУДН × X5 Tech — Бакалавриат по ИИ" },
+      { property: "og:title", content: "РУДН × X5 Tech – Бакалавриат по ИИ" },
       { property: "og:description", content: "Изучай ИИ. Входи в профессию вместе с X5 Tech." },
     ],
   }),

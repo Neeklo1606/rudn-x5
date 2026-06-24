@@ -19,8 +19,8 @@ const CANVAS = "#F7F9F0";
 
 const CHIPS = ["x5", "rudn", "минцифры", "аналитический центр"];
 const STATS: Array<{ value: string; suffix?: string; label: string }> = [
-  { value: "25", label: "бюджетных мест" },
-  { value: "80", label: "по договору" },
+  { value: "50", label: "бюджетных мест" },
+  { value: "152", label: "по договору" },
   { value: "4", suffix: "года", label: "бакалавриат" },
 ];
 
@@ -67,9 +67,12 @@ export default function Hero() {
                 </motion.div>
 
                 {/* Program label */}
-                <motion.p variants={fadeUp} className="hero-label">
-                  Образовательная программа: Искусственный интеллект, разработка
-                </motion.p>
+                <motion.div variants={fadeUp} className="hero-label">
+                  <span className="hero-label-eyebrow">Образовательная программа</span>
+                  <span className="hero-label-title">
+                    «Искусственный интеллект: разработка и обучение интеллектуальных систем»
+                  </span>
+                </motion.div>
 
                 {/* Headline */}
                 <motion.h1 variants={fadeUp} className="hero-h1">
@@ -114,7 +117,7 @@ export default function Hero() {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT — AI visual */}
+            {/* RIGHT – AI visual */}
             <motion.div
               className="hero-right"
               initial={{ opacity: 0 }}
@@ -174,12 +177,20 @@ export default function Hero() {
         .hero-logo-divider { width: 1px; height: 22px; background: #e5e5e0; }
 
         .hero-label {
-          font-family: 'Playfair Display', Georgia, serif;
-          font-style: italic; font-weight: 500;
-          font-size: 18px; line-height: 1.5;
-          color: #6b6b6b;
-          margin: 0 0 20px;
-          max-width: 520px;
+          display: flex; flex-direction: column; gap: 6px;
+          margin: 0 0 24px;
+          max-width: 560px;
+        }
+        .hero-label-eyebrow {
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+          font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+          color: #8a8a82;
+        }
+        .hero-label-title {
+          font-family: Inter, sans-serif;
+          font-weight: 600; font-size: 17px; line-height: 1.45;
+          color: #3f3f3f;
+          letter-spacing: -0.005em;
         }
         .hero-h1 {
           font-family: Inter, sans-serif;

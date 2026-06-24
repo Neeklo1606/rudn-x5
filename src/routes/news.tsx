@@ -35,6 +35,6 @@ function NewsPage() {
 }
 
 export const Route = createFileRoute("/news")({
-  head: () => ({ meta: [{ title: "Новости — РУДН × X5 Tech" }] }),
+  head: () => ({ meta: [{ title: "Новости – РУДН × X5 Tech" }] }),
   component: NewsPage,
 });
