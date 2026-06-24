@@ -38,7 +38,7 @@ export default function ForWhom() {
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                 style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, color: "#272727", letterSpacing: 0.5, whiteSpace: "nowrap" }}
               >
-                RUDN × X5 TECH • AI BACHELOR
+                РУДН × X5 TECH • БАКАЛАВРИАТ ИИ
               </motion.div>
             </div>
           </div>
