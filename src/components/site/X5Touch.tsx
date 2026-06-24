@@ -175,18 +175,18 @@ function Demo({ k }: { k: Key }) {
 export default function X5Touch() {
   const [open, setOpen] = useState<Key | null>(null);
   return (
-    <section id="x5touch" style={{ background: "#F1F1F1", padding: "96px 0" }}>
-      <svg style={{ display: "block", width: "100%", height: 24, marginTop: -120, marginBottom: 96 }} viewBox="0 0 1200 24" preserveAspectRatio="none">
+    <section id="x5touch" className="x5touch-section">
+      <svg className="x5touch-wave" viewBox="0 0 1200 24" preserveAspectRatio="none">
         <path d="M0,12 Q300,0 600,12 T1200,12 L1200,0 L0,0 Z" fill="#1A2035" />
       </svg>
       <div className="container">
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1.5, color: "#A79FFF", textTransform: "uppercase", marginBottom: 16 }}>X5 TOUCH</div>
-        <h2 style={{ fontWeight: 700, fontSize: 44, color: "#272727", marginBottom: 16 }} className="h2-big">Прикоснись к технологиям X5</h2>
-        <p style={{ fontSize: 18, lineHeight: 1.7, color: "#6B6B6B", maxWidth: 640, marginBottom: 56 }}>
+        <div className="x5touch-eyebrow">X5 TOUCH</div>
+        <h2 className="h2-big x5touch-h2">Прикоснись к технологиям X5</h2>
+        <p className="x5touch-lead">
           Четыре направления AI в X5 Tech. Кликни на карточку – увидишь, как это работает изнутри.
         </p>
 
-        <div className="x5touch-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+        <div className="x5touch-grid">
           {cards.map((c) => {
             const Icon = c.icon;
             const isOpen = open === c.key;
@@ -194,20 +194,22 @@ export default function X5Touch() {
               <motion.div
                 key={c.key}
                 onClick={() => setOpen(isOpen ? null : c.key)}
+                className="x5touch-card"
                 style={{
                   cursor: "pointer", overflow: "hidden", position: "relative",
                   background: isOpen ? "#1A2035" : "#fff",
                   color: isOpen ? "#fff" : "#272727",
-                  borderRadius: 24, padding: isOpen ? 36 : 30,
+                  borderRadius: 20,
+                  padding: isOpen ? 28 : 24,
                   boxShadow: isOpen ? "0 16px 48px rgba(0,0,0,0.2)" : "var(--shadow-card)",
                   gridColumn: isOpen ? "1 / -1" : "auto",
                   transition: "background 350ms, color 350ms, padding 350ms",
                 }}
               >
                 <div style={{ position: "absolute", right: 0, top: 24, bottom: 24, width: 4, background: c.bar, borderRadius: "4px 0 0 4px" }} />
-                <Icon size={32} color={isOpen ? "#B6E835" : c.bar} strokeWidth={1.7} />
-                <h3 style={{ fontWeight: 600, fontSize: 20, marginTop: 14, marginBottom: 6 }}>{c.title}</h3>
-                <p style={{ fontSize: 14, lineHeight: 1.55, color: isOpen ? "rgba(255,255,255,0.65)" : "#6B6B6B" }}>{c.desc}</p>
+                <Icon size={28} color={isOpen ? "#B6E835" : c.bar} strokeWidth={1.7} />
+                <h3 style={{ fontWeight: 600, fontSize: 18, marginTop: 12, marginBottom: 6 }}>{c.title}</h3>
+                <p style={{ fontSize: 13.5, lineHeight: 1.5, color: isOpen ? "rgba(255,255,255,0.65)" : "#6B6B6B" }}>{c.desc}</p>
                 {!isOpen && <div style={{ position: "absolute", bottom: 14, right: 18, fontFamily: "var(--font-mono)", fontSize: 10, color: "#A3A3A3" }}>Нажми, чтобы узнать →</div>}
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -219,7 +221,7 @@ export default function X5Touch() {
                       style={{ overflow: "hidden" }}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <div style={{ paddingTop: 24 }}>
+                      <div style={{ paddingTop: 20 }}>
                         <Demo k={c.key} />
                       </div>
                     </motion.div>
@@ -231,7 +233,21 @@ export default function X5Touch() {
         </div>
       </div>
       <style>{`
+        .x5touch-section { background: #F1F1F1; padding: 72px 0; }
+        .x5touch-wave { display: block; width: 100%; height: 24px; margin-top: -96px; margin-bottom: 72px; }
+        .x5touch-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; color: #A79FFF; text-transform: uppercase; margin-bottom: 12px; }
+        .x5touch-h2 { font-weight: 700; font-size: 40px; color: #272727; margin: 0 0 12px; letter-spacing: -0.02em; max-width: 640px; }
+        .x5touch-lead { font-size: 16px; line-height: 1.6; color: #6B6B6B; max-width: 640px; margin: 0 0 32px; }
+        .x5touch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 1024px) {
+          .x5touch-section { padding: 56px 0; }
+          .x5touch-wave { margin-top: -72px; margin-bottom: 56px; }
+          .x5touch-lead { margin-bottom: 24px; }
+        }
         @media (max-width: 768px) {
+          .x5touch-section { padding: 44px 0; }
+          .x5touch-wave { margin-top: -56px; margin-bottom: 40px; }
+          .x5touch-lead { font-size: 14.5px; }
           .x5touch-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
