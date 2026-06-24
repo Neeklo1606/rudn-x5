@@ -2,40 +2,46 @@ import { motion } from "framer-motion";
 import { CheckCircle2, FileText, ListChecks, CalendarCheck, BadgeCheck } from "lucide-react";
 
 const examRows = [
-  { subject: "Математика (профиль)", score: 65, role: "обязательный" },
-  { subject: "Русский язык", score: 65, role: "обязательный" },
-  { subject: "Информатика", score: 65, role: "по выбору" },
+  { subject: "Математика (профиль)", budget: 65, contract: 45, role: "обязательный" },
+  { subject: "Русский язык", budget: 65, contract: 42, role: "обязательный" },
+  { subject: "Информатика", budget: 65, contract: 46, role: "по выбору" },
 ];
 
 const steps = [
   {
     date: "До 25 июля",
+    deadline: "18:00 мск",
     title: "Проверь баллы ЕГЭ",
-    desc: "Убедись, что баллы по профильным предметам соответствуют минимальным.",
+    desc: "Сверь баллы по профильным предметам с минимальными для бюджета и контракта.",
     icon: CheckCircle2,
   },
   {
     date: "20 июня – 25 июля",
+    deadline: "до 18:00 мск 25 июля",
     title: "Подай документы",
-    desc: "Через Госуслуги или лично в приёмной комиссии РУДН.",
+    desc: "Через Госуслуги, суперсервис «Поступление в вуз онлайн» или лично в приёмной комиссии РУДН.",
     icon: FileText,
   },
   {
     date: "До 3 августа",
+    deadline: "обновление ежедневно в 09:00",
     title: "Следи за конкурсными списками",
-    desc: "Списки обновляются ежедневно на сайте РУДН.",
+    desc: "Конкурсные списки публикуются на сайте РУДН — отслеживай свою позицию.",
     icon: ListChecks,
   },
   {
     date: "3 августа",
+    deadline: "до 12:00 мск",
+    track: "бюджет",
     title: "Подай согласие на зачисление",
-    desc: "Оригинал аттестата + согласие на специальность.",
+    desc: "Оригинал аттестата и согласие на зачисление — для поступления на бюджетные места.",
     icon: CalendarCheck,
   },
   {
     date: "9 августа",
+    deadline: "приказ о зачислении",
     title: "Ты студент РУДН",
-    desc: "Приказ о зачислении. Добро пожаловать в программу!",
+    desc: "Публикация приказа о зачислении. Договоры по контракту — до 20 августа.",
     icon: BadgeCheck,
   },
 ];
@@ -43,7 +49,7 @@ const steps = [
 const stats = [
   ["50", "бюджетных мест"],
   ["152", "по договору"],
-  ["4 года", "очное обучение"],
+  ["4 года", "очное, бакалавриат"],
 ];
 
 const containerVariants = {
@@ -93,22 +99,27 @@ export default function Admission() {
             <div className="exam-table">
               <div className="exam-thead">
                 <span>Предмет</span>
-                <span>Минимум</span>
-                <span>Статус</span>
+                <span>Бюджет</span>
+                <span>Контракт</span>
               </div>
               {examRows.map((row) => (
                 <div key={row.subject} className="exam-row">
-                  <span className="exam-subject">{row.subject}</span>
-                  <span className="exam-score">{row.score}</span>
-                  <span className="exam-role">{row.role}</span>
+                  <span className="exam-subject">
+                    {row.subject}
+                    <span className="exam-tag">{row.role}</span>
+                  </span>
+                  <span className="exam-score exam-score--budget">{row.budget}</span>
+                  <span className="exam-score exam-score--contract">{row.contract}</span>
                 </div>
               ))}
             </div>
+            <p className="exam-note">Минимальные баллы ЕГЭ для участия в конкурсе на бюджет и по договору.</p>
 
             <div className="facts-grid">
               <div className="fact-tile fact-tile--accent">
                 <span className="fact-label">Стоимость</span>
                 <span className="fact-value">225 000 ₽ / семестр</span>
+                <span className="fact-sub">оплата раз в семестр, фиксированная</span>
               </div>
               {stats.map(([n, l]) => (
                 <div key={l} className="fact-tile">
@@ -122,7 +133,7 @@ export default function Admission() {
           <motion.div variants={itemVariants} className="admission-column timeline-column">
             <div className="column-header">
               <h3 className="column-title">Этапы поступления</h3>
-              <p className="column-caption">От подачи документов до приказа о зачислении</p>
+              <p className="column-caption">Ключевые даты и дедлайны приёмной кампании 2026</p>
             </div>
 
             <div className="timeline">
@@ -138,7 +149,11 @@ export default function Admission() {
                       {!isLast && <div className="timeline-line" />}
                     </div>
                     <div className="timeline-body">
-                      <div className="timeline-date">{step.date}</div>
+                      <div className="timeline-meta">
+                        <span className="timeline-date">{step.date}</span>
+                        {step.deadline && <span className="timeline-deadline">{step.deadline}</span>}
+                        {step.track && <span className="timeline-track">{step.track}</span>}
+                      </div>
                       <div className="timeline-title">{step.title}</div>
                       <div className="timeline-desc">{step.desc}</div>
                     </div>
@@ -234,7 +249,7 @@ export default function Admission() {
 
         .exam-thead {
           display: grid;
-          grid-template-columns: 1fr 90px 110px;
+          grid-template-columns: 1fr 90px 90px;
           gap: 16px;
           padding: 14px 22px;
           background: rgba(0, 102, 161, 0.06);
@@ -246,11 +261,11 @@ export default function Admission() {
           border-bottom: 1px solid var(--line-subtle, #EBEBEB);
         }
 
-        .exam-thead span:last-child { text-align: right; }
+        .exam-thead span:not(:first-child) { text-align: right; }
 
         .exam-row {
           display: grid;
-          grid-template-columns: 1fr 90px 110px;
+          grid-template-columns: 1fr 90px 90px;
           gap: 16px;
           align-items: center;
           padding: 14px 22px;
@@ -265,19 +280,31 @@ export default function Admission() {
           font-weight: 500;
           font-size: 16px;
           color: var(--ink);
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .exam-tag {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.4px;
+          text-transform: uppercase;
+          color: var(--ink-40, #A3A3A3);
         }
 
         .exam-score {
           font-weight: 700;
           font-size: 18px;
-          color: var(--lime, #B6E835);
-        }
-
-        .exam-role {
           text-align: right;
-          font-size: 13px;
+        }
+        .exam-score--budget { color: #5e8a08; }
+        .exam-score--contract { color: var(--ink-60, #6B6B6B); }
+
+        .exam-note {
+          margin-top: 10px;
+          font-size: 12px;
           color: var(--ink-40, #A3A3A3);
-          font-family: var(--font-body);
+          line-height: 1.5;
         }
 
         .facts-grid {
@@ -303,6 +330,11 @@ export default function Admission() {
           font-weight: 700; font-size: 18px; color: var(--ink); letter-spacing: -0.01em;
         }
         .fact-value--lime { color: #5e8a08; }
+        .fact-sub {
+          font-size: 11px;
+          color: var(--ink-40, #A3A3A3);
+          line-height: 1.4;
+        }
 
         .timeline {
           position: relative;
@@ -348,13 +380,41 @@ export default function Admission() {
           padding-top: 2px;
         }
 
+        .timeline-meta {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 6px 10px;
+          margin-bottom: 6px;
+        }
         .timeline-date {
           font-family: var(--font-mono);
           font-size: 11px;
           letter-spacing: 0.5px;
           text-transform: uppercase;
           color: var(--rudn-blue, #0066A1);
-          margin-bottom: 4px;
+          font-weight: 600;
+        }
+        .timeline-deadline {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.4px;
+          text-transform: uppercase;
+          color: var(--ink-40, #A3A3A3);
+          padding: 2px 8px;
+          border-radius: 999px;
+          background: rgba(0,0,0,0.04);
+        }
+        .timeline-track {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          letter-spacing: 0.4px;
+          text-transform: uppercase;
+          color: #5e8a08;
+          padding: 2px 8px;
+          border-radius: 999px;
+          background: rgba(182, 232, 53, 0.18);
+          border: 1px solid rgba(182, 232, 53, 0.35);
         }
 
         .timeline-title {
@@ -384,10 +444,9 @@ export default function Admission() {
           .admission-column { padding: 22px 20px; }
           .column-title { font-size: 18px; }
           .exam-thead,
-          .exam-row { grid-template-columns: 1fr 56px 80px; padding: 12px 14px; gap: 8px; }
+          .exam-row { grid-template-columns: 1fr 52px 56px; padding: 12px 14px; gap: 8px; }
           .exam-subject { font-size: 14px; }
           .exam-score { font-size: 16px; }
-          .exam-role { font-size: 12px; }
           .facts-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
           .fact-value { font-size: 16px; }
           .timeline-step { gap: 12px; padding-bottom: 18px; }
