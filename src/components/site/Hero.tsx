@@ -31,7 +31,7 @@ export default function Hero() {
       className="hero-section"
       style={{
         background: CANVAS,
-        padding: "104px 0 64px",
+        padding: "96px 0 48px",
         position: "relative",
       }}
     >
@@ -157,15 +157,15 @@ export default function Hero() {
           position: relative; z-index: 1;
           display: grid;
           grid-template-columns: 7fr 5fr;
-          min-height: 640px;
+          min-height: 560px;
         }
         .hero-left {
-          padding: 56px 56px 48px;
+          padding: 48px 52px 40px;
           display: flex; flex-direction: column; justify-content: space-between;
-          gap: 48px;
+          gap: 36px;
           min-width: 0;
         }
-        .hero-logos { display: flex; align-items: center; gap: 24px; margin-bottom: 40px; }
+        .hero-logos { display: flex; align-items: center; gap: 24px; margin-bottom: 28px; }
         .hero-logo { display: inline-flex; align-items: center; gap: 10px; }
         .hero-logo-mark {
           width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
@@ -178,7 +178,7 @@ export default function Hero() {
 
         .hero-label {
           display: flex; flex-direction: column; gap: 6px;
-          margin: 0 0 24px;
+          margin: 0 0 18px;
           max-width: 560px;
         }
         .hero-label-eyebrow {
@@ -195,9 +195,9 @@ export default function Hero() {
         .hero-h1 {
           font-family: Inter, sans-serif;
           font-weight: 800;
-          font-size: 64px; line-height: 1.05; letter-spacing: -0.025em;
+          font-size: 58px; line-height: 1.05; letter-spacing: -0.025em;
           color: ${INK};
-          margin: 0 0 36px;
+          margin: 0 0 28px;
         }
         .hero-h1-accent {
           background: linear-gradient(90deg, ${LIME}, ${LIME_DARK});
@@ -206,7 +206,7 @@ export default function Hero() {
           white-space: nowrap;
         }
 
-        .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+        .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
         .hero-cta-primary {
           display: inline-flex; align-items: center; gap: 10px;
           min-height: 52px; padding: 0 28px;
@@ -239,7 +239,7 @@ export default function Hero() {
 
         .hero-stats {
           display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-          padding-top: 32px; border-top: 1px solid #ececea;
+          padding-top: 24px; border-top: 1px solid #ececea;
         }
         .hero-stat-value {
           font-family: Inter, sans-serif; font-weight: 800; font-size: 32px; line-height: 1; color: ${INK};
@@ -282,23 +282,26 @@ export default function Hero() {
         .hero-float-body { font-family: Inter, sans-serif; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 0; }
 
         @media (max-width: 1024px) {
-          .hero-section { padding: 96px 0 48px !important; }
+          .hero-section { padding: 84px 0 36px !important; }
           .hero-inner { grid-template-columns: 1fr; min-height: 0; }
-          .hero-left { padding: 40px 32px 36px; gap: 36px; }
-          .hero-right { min-height: 360px; }
-          .hero-h1 { font-size: 48px; }
+          .hero-left { padding: 32px 28px 28px; gap: 24px; }
+          .hero-right { min-height: 300px; }
+          .hero-h1 { font-size: 44px; margin-bottom: 22px; }
         }
         @media (max-width: 640px) {
-          .hero-section { padding: 88px 0 32px !important; }
+          .hero-section { padding: 76px 0 24px !important; }
           .hero-card { border-radius: 22px; }
-          .hero-left { padding: 32px 22px 28px; gap: 28px; }
-          .hero-logos { gap: 16px; margin-bottom: 28px; }
-          .hero-label { font-size: 15px; margin-bottom: 16px; }
-          .hero-h1 { font-size: 36px; margin-bottom: 24px; letter-spacing: -0.02em; }
+          .hero-left { padding: 24px 18px 22px; gap: 18px; }
+          .hero-logos { gap: 14px; margin-bottom: 18px; }
+          .hero-label { margin-bottom: 12px; }
+          .hero-label-title { font-size: 14px; line-height: 1.4; }
+          .hero-h1 { font-size: 32px; margin-bottom: 18px; letter-spacing: -0.02em; }
           .hero-cta-primary, .hero-cta-secondary { min-height: 48px; font-size: 14px; }
-          .hero-stats { grid-template-columns: 1fr; gap: 16px; padding-top: 24px; }
-          .hero-stat-value { font-size: 28px; }
-          .hero-right { min-height: 280px; }
+          .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 10px; padding-top: 18px; }
+          .hero-stat-value { font-size: 22px; }
+          .hero-stat-suffix { font-size: 13px; }
+          .hero-stat-label { font-size: 10px; letter-spacing: 0.08em; }
+          .hero-right { min-height: 240px; }
           .hero-float--lime { top: 20px; right: 20px; font-size: 12px; padding: 10px 12px; }
           .hero-float--glass { left: 20px; right: 20px; bottom: 20px; max-width: none; }
         }
