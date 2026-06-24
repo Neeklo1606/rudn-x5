@@ -5,19 +5,19 @@ type PillData = { label: string; accent?: boolean };
 const year1Pills: PillData[] = [
   { label: "Математический анализ" },
   { label: "Линейная алгебра" },
-  { label: "Python и алгоритмы" },
+  { label: "Питон и алгоритмы" },
   { label: "Теория вероятностей" },
-  { label: "Введение в ML", accent: true },
+  { label: "Введение в машинное обучение", accent: true },
   { label: "Дискретная математика" },
 ];
 
 const year3Pills: PillData[] = [
   { label: "Глубинное обучение" },
-  { label: "MLOps" },
-  { label: "Big Data" },
-  { label: "Reinforcement Learning" },
-  { label: "Computer Vision Advanced" },
-  { label: "NLP Advanced" },
+  { label: "MLOps и инфраструктура" },
+  { label: "Большие данные" },
+  { label: "Обучение с подкреплением" },
+  { label: "Компьютерное зрение · продвинутый" },
+  { label: "Обработка языка · продвинутый" },
 ];
 
 const tracks = [
@@ -27,7 +27,7 @@ const tracks = [
     title: "Обработка естественного языка",
     desc: "ChatGPT, переводчики, голосовые ассистенты. Научитесь строить языковые модели.",
     expand: (
-      <pre style={{ background: "#1A2035", color: "#B6E835", padding: 16, borderRadius: 12, fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 1.6, overflowX: "auto", margin: 0 }}>
+      <pre className="nlp-code" style={{ background: "#1A2035", color: "#B6E835", padding: 14, borderRadius: 12, fontFamily: "var(--font-mono)", fontSize: 11.5, lineHeight: 1.55, overflowX: "auto", margin: 0, whiteSpace: "pre", maxWidth: "100%" }}>
 {`from transformers import AutoModel
 model = AutoModel.from_pretrained(
   "bert-base-multilingual-cased"
@@ -59,10 +59,10 @@ embeddings = model(**tokens)`}
     accent: "#00BFA5",
     icon: "🔄",
     title: "Рекомендательные системы",
-    desc: "Персонализация, A/B тесты, прогнозирование спроса.",
+    desc: "Персонализация, А/Б‑тесты, прогнозирование спроса.",
     expand: (
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 0" }}>
-        {["User", "ML", "★"].map((l, i, arr) => (
+        {["Польз.", "Модель", "★"].map((l, i, arr) => (
           <div key={l} style={{ display: "flex", alignItems: "center", gap: 8, flex: 1 }}>
             <div style={{ flex: 1, padding: "12px 8px", background: "#F7F9F0", border: "1px solid #E0E0E0", borderRadius: 10, textAlign: "center", fontFamily: "var(--font-mono)", fontSize: 12, color: "#272727" }}>{l}</div>
             {i < arr.length - 1 && <span style={{ color: "#00BFA5", fontSize: 18 }}>→</span>}
@@ -225,9 +225,10 @@ export default function Curriculum() {
 
   return (
     <section id="program" className="curriculum-section">
-      <div className="container" style={{ textAlign: "center", marginBottom: 40 }}>
-        <h2 style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 40, color: "#272727", marginBottom: 12, letterSpacing: "-0.02em" }} className="curriculum-h2 h2-big">Программа обучения</h2>
-        <p className="curriculum-lead" style={{ fontSize: 17, color: "rgba(39,39,39,0.6)" }}>4 года, которые превратят вас в AI-инженера</p>
+      <div className="container" style={{ textAlign: "center", marginBottom: 32 }}>
+        <div className="section-eyebrow">Программа</div>
+        <h2 className="curriculum-h2 h2-big">Программа обучения</h2>
+        <p className="curriculum-lead" style={{ fontSize: 16, color: "rgba(39,39,39,0.6)", marginTop: 6 }}>4 года, которые превратят вас в инженера искусственного интеллекта</p>
       </div>
 
       <div
