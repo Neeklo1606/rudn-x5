@@ -70,6 +70,7 @@ export default function Header() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          position: "relative",
         }}
       >
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -77,7 +78,17 @@ export default function Header() {
           <LogoBlock text="X5 TECH" />
         </Link>
 
-        <nav className="desktop-nav" style={{ display: "flex", gap: 40 }}>
+        <nav
+          className="desktop-nav"
+          style={{
+            display: "flex",
+            gap: 40,
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           {links.map((l) => (
             <a
               key={l.label}
@@ -88,7 +99,7 @@ export default function Header() {
                 fontSize: 13,
                 letterSpacing: 0.3,
                 color: "#6B6B6B",
-                textTransform: "lowercase",
+                textTransform: "none",
                 position: "relative",
                 paddingBottom: 4,
               }}
