@@ -75,9 +75,9 @@ export default function ApplyForm() {
   const inputBase = {
     width: "100%",
     border: "2px solid #E0E0E0",
-    borderRadius: 14,
-    padding: "0 18px",
-    fontSize: 16,
+    borderRadius: 12,
+    padding: "0 16px",
+    fontSize: 15,
     color: "#272727",
     background: "#fff",
     outline: "none",
@@ -97,8 +97,8 @@ export default function ApplyForm() {
   const errorStyle = {
     fontSize: 12,
     color: "#E9423A",
-    marginTop: 6,
-    minHeight: 16,
+    marginTop: 4,
+    minHeight: 14,
   } as const;
 
   const renderTextInput = (
@@ -123,7 +123,7 @@ export default function ApplyForm() {
           className="apply-input"
           style={{
             ...inputBase,
-            height: 56,
+            height: 50,
             borderColor: hasError ? "#E9423A" : "#E0E0E0",
           }}
         />
@@ -135,14 +135,14 @@ export default function ApplyForm() {
   const commentError = !!(touched.comment && err.comment);
 
   return (
-    <section id="apply" style={{ background: "#F1F1F1", padding: "96px 0" }}>
+    <section id="apply" style={{ background: "#F1F1F1", padding: "64px 0 72px" }}>
       <div className="container">
         <div
           style={{
             background: "#fff",
-            borderRadius: 32,
-            padding: 56,
-            maxWidth: 640,
+            borderRadius: 26,
+            padding: "40px 44px",
+            maxWidth: 600,
             margin: "0 auto",
             boxShadow: "var(--shadow-card)",
             position: "relative",
@@ -167,33 +167,34 @@ export default function ApplyForm() {
                 <h2
                   style={{
                     fontWeight: 700,
-                    fontSize: 30,
+                    fontSize: 26,
                     color: "#272727",
                     textAlign: "center",
-                    marginBottom: 12,
+                    marginBottom: 8,
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   Оставь заявку – расскажем, как поступить.
                 </h2>
                 <p
                   style={{
-                    fontSize: 16,
+                    fontSize: 14.5,
                     color: "#6B6B6B",
                     textAlign: "center",
-                    marginBottom: 40,
+                    marginBottom: 26,
                   }}
                 >
                   Менеджер приёмной комиссии свяжется с тобой в течение дня.
                 </p>
                 <form
                   onSubmit={submit}
-                  style={{ display: "flex", flexDirection: "column", gap: 20 }}
+                  style={{ display: "flex", flexDirection: "column", gap: 14 }}
                 >
                   <div
                     style={{
                       display: "grid",
                       gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 20,
+                      gap: 14,
                     }}
                     className="form-name-grid"
                   >
@@ -210,13 +211,13 @@ export default function ApplyForm() {
                       value={f.comment}
                       onChange={(e) => setF((s) => ({ ...s, comment: e.target.value }))}
                       onBlur={() => markTouched("comment")}
-                      rows={4}
+                      rows={3}
                       className="apply-input"
                       style={{
                         ...inputBase,
-                        padding: "14px 18px",
+                        padding: "12px 16px",
                         resize: "vertical",
-                        minHeight: 110,
+                        minHeight: 88,
                         borderColor: commentError ? "#E9423A" : "#E0E0E0",
                       }}
                     />
@@ -284,15 +285,15 @@ export default function ApplyForm() {
                     type="submit"
                     className="submit-btn"
                     style={{
-                      marginTop: 4,
+                      marginTop: 6,
                       width: "100%",
-                      height: 56,
+                      height: 52,
                       background: "#B6E835",
                       color: "#272727",
                       border: "none",
-                      borderRadius: 14,
+                      borderRadius: 12,
                       fontWeight: 600,
-                      fontSize: 16,
+                      fontSize: 15,
                       cursor: "pointer",
                       transition: "all 250ms ease",
                     }}
@@ -337,7 +338,7 @@ export default function ApplyForm() {
         .apply-input:focus { border-color: #B6E835 !important; box-shadow: 0 0 0 4px rgba(182,232,53,0.12); }
         .submit-btn:hover { background: #D6F360 !important; transform: scale(1.01); box-shadow: var(--shadow-glow-lime); }
         @media (max-width: 768px) {
-          .form-card { padding: 32px 24px !important; }
+          .form-card { padding: 26px 20px !important; border-radius: 22px !important; }
           .form-name-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

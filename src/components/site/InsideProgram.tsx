@@ -80,14 +80,14 @@ export default function InsideProgram() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section style={{ background: "#F1F1F1", padding: "48px 0 72px" }}>
+    <section style={{ background: "#F1F1F1", padding: "32px 0 56px" }}>
       <div className="container">
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: 36, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: 24, flexWrap: "wrap" }}>
           <div>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 2, color: "#A79FFF", textTransform: "uppercase", marginBottom: 10 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 2, color: "#A79FFF", textTransform: "uppercase", marginBottom: 8 }}>
               // ЧТО ВНУТРИ
             </div>
-            <h2 className="ip-title" style={{ fontWeight: 700, fontSize: 40, lineHeight: 1.1, color: "#272727", letterSpacing: "-0.02em" }}>
+            <h2 className="ip-title" style={{ fontWeight: 700, fontSize: 36, lineHeight: 1.1, color: "#272727", letterSpacing: "-0.02em" }}>
               Программа дает:
             </h2>
           </div>
@@ -114,8 +114,8 @@ export default function InsideProgram() {
                   gridColumn: f.span === 2 ? "span 2" : undefined,
                   background: f.featured ? "#272727" : "#FFFFFF",
                   color: f.featured ? "#FFFFFF" : "#272727",
-                  borderRadius: 24,
-                  padding: "32px 30px",
+                  borderRadius: 20,
+                  padding: "24px 24px",
                   border: `1px solid ${f.featured ? "#272727" : "#ECECEC"}`,
                   textAlign: "left",
                   cursor: "pointer",
@@ -126,37 +126,37 @@ export default function InsideProgram() {
                   font: "inherit",
                 }}
               >
-                <span aria-hidden style={{ position: "absolute", top: 18, right: 22, fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1, color: f.featured ? "rgba(255,255,255,0.4)" : "#A3A3A3" }}>
+                <span aria-hidden style={{ position: "absolute", top: 14, right: 18, fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 1, color: f.featured ? "rgba(255,255,255,0.4)" : "#A3A3A3" }}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
                   <div style={{
-                    width: 44, height: 44, borderRadius: 12,
+                    width: 40, height: 40, borderRadius: 10,
                     background: f.featured ? "#B6E835" : "rgba(182,232,53,0.14)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
-                    <Icon size={22} color={f.featured ? "#272727" : "#272727"} strokeWidth={1.9} />
+                    <Icon size={20} color={f.featured ? "#272727" : "#272727"} strokeWidth={1.9} />
                   </div>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.25 }}
                     style={{
-                      width: 30, height: 30, borderRadius: "50%",
+                      width: 28, height: 28, borderRadius: "50%",
                       display: "inline-flex", alignItems: "center", justifyContent: "center",
                       background: f.featured ? "rgba(255,255,255,0.08)" : "#F4F4F4",
                       color: f.featured ? "#FFFFFF" : "#272727",
-                      marginRight: 28,
+                      marginRight: 22,
                     }}
                   >
                     <Plus size={16} strokeWidth={2.2} />
                   </motion.span>
                 </div>
 
-                <div style={{ fontWeight: 700, fontSize: f.featured ? 24 : 19, lineHeight: 1.2, marginBottom: 10, letterSpacing: "-0.01em" }}>
+                <div style={{ fontWeight: 700, fontSize: f.featured ? 22 : 17.5, lineHeight: 1.2, marginBottom: 8, letterSpacing: "-0.01em" }}>
                   {f.title}
                 </div>
-                <div style={{ fontSize: 14.5, lineHeight: 1.55, color: f.featured ? "rgba(255,255,255,0.72)" : "#6B6B6B", maxWidth: 520 }}>
+                <div style={{ fontSize: 14, lineHeight: 1.5, color: f.featured ? "rgba(255,255,255,0.72)" : "#6B6B6B", maxWidth: 520 }}>
                   {f.desc}
                 </div>
 
@@ -165,7 +165,7 @@ export default function InsideProgram() {
                     <motion.ul
                       key="details"
                       initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                      animate={{ height: "auto", opacity: 1, marginTop: 18 }}
+                      animate={{ height: "auto", opacity: 1, marginTop: 14 }}
                       exit={{ height: 0, opacity: 0, marginTop: 0 }}
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       style={{
@@ -175,7 +175,7 @@ export default function InsideProgram() {
                         borderTop: `1px solid ${f.featured ? "rgba(255,255,255,0.12)" : "#EFEFEF"}`,
                       }}
                     >
-                      <div style={{ paddingTop: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+                      <div style={{ paddingTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
                         {f.details.map((d) => (
                           <li key={d} style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 14, lineHeight: 1.5, color: f.featured ? "rgba(255,255,255,0.85)" : "#3F3F3F" }}>
                             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#B6E835", marginTop: 8, flexShrink: 0 }} />
@@ -202,19 +202,19 @@ export default function InsideProgram() {
         .ip-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 18px;
+          gap: 12px;
           align-items: start;
         }
         .ip-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.08); border-color: #DADADA; }
         .ip-card--featured:hover { border-color: #272727; box-shadow: 0 16px 40px rgba(0,0,0,0.16); }
         .ip-card:hover .ip-bar { transform: translateX(0); }
         @media (max-width: 1024px) {
-          .ip-grid { grid-template-columns: repeat(2, 1fr); }
+          .ip-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
           .ip-card[style*="span 2"] { grid-column: span 2 !important; }
         }
         @media (max-width: 768px) {
-          .ip-title { font-size: 30px !important; }
-          .ip-grid { grid-template-columns: 1fr; }
+          .ip-title { font-size: 26px !important; }
+          .ip-grid { grid-template-columns: 1fr; gap: 10px; }
           .ip-card[style*="span 2"] { grid-column: auto !important; }
         }
       `}</style>

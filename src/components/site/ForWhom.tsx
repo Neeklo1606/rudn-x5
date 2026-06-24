@@ -10,7 +10,7 @@ const items = [
 
 export default function ForWhom() {
   return (
-    <section style={{ background: "#F1F1F1", padding: "72px 0 48px" }}>
+    <section style={{ background: "#F1F1F1", padding: "48px 0 32px" }}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -22,13 +22,13 @@ export default function ForWhom() {
             marginInline: "auto",
             background: "#FFFFFF",
             border: "1px solid #F0F0F0",
-            borderRadius: 32,
-            padding: "40px 44px",
+            borderRadius: 28,
+            padding: "28px 36px 32px",
             boxShadow: "0 2px 24px rgba(0,0,0,0.04)",
           }}
           className="fw-card"
         >
-          <div className="fw-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 24 }}>
+          <div className="fw-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 20 }}>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: 2, color: "#A79FFF", textTransform: "uppercase" }}>
               // ДЛЯ КОГО
             </div>
@@ -43,7 +43,7 @@ export default function ForWhom() {
             </div>
           </div>
 
-          <div className="fw-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="fw-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             {items.map(({ Icon, title, desc }, i) => (
               <motion.div
                 key={title}
@@ -56,21 +56,21 @@ export default function ForWhom() {
                 style={{
                   background: "rgba(241,241,241,0.55)",
                   border: "1px solid transparent",
-                  borderRadius: 20,
-                  padding: 24,
+                  borderRadius: 18,
+                  padding: 20,
                   transition: "background 240ms ease, border-color 240ms ease, box-shadow 240ms ease",
                 }}
               >
-                <div style={{ width: 40, height: 40, borderRadius: 12, background: "#B6E835", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, background: "#B6E835", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                   <Icon size={20} color="#272727" strokeWidth={2} />
                 </div>
-                <div style={{ fontWeight: 700, fontSize: 18, color: "#272727", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontSize: 14, lineHeight: 1.55, color: "#6B6B6B" }}>{desc}</div>
+                <div style={{ fontWeight: 700, fontSize: 17, color: "#272727", marginBottom: 6 }}>{title}</div>
+                <div style={{ fontSize: 13.5, lineHeight: 1.5, color: "#6B6B6B" }}>{desc}</div>
               </motion.div>
             ))}
           </div>
 
-          <div style={{ marginTop: 28, display: "flex", justifyContent: "center", gap: 6 }}>
+          <div style={{ marginTop: 20, display: "flex", justifyContent: "center", gap: 6 }}>
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#B6E835" }} />
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#A79FFF", opacity: 0.4 }} />
             <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#6B6B6B", opacity: 0.2 }} />
@@ -80,10 +80,9 @@ export default function ForWhom() {
       <style>{`
         .fw-item:hover { background: #FFFFFF !important; border-color: #B6E835 !important; box-shadow: 0 10px 30px rgba(182,232,53,0.08); }
         @media (max-width: 768px) {
-          .fw-card { padding: 28px 22px !important; border-radius: 24px !important; }
+          .fw-card { padding: 20px 18px 22px !important; border-radius: 22px !important; }
           .fw-header { flex-direction: column; align-items: flex-start !important; }
-          .fw-title { font-size: 28px !important; }
-          .fw-grid { grid-template-columns: 1fr !important; }
+          .fw-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
           .fw-ticker { display: none !important; }
         }
       `}</style>
