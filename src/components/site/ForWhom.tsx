@@ -80,7 +80,8 @@ export default function ForWhom() {
         .fw-item:hover { background: #FFFFFF !important; border-color: #B6E835 !important; box-shadow: 0 10px 30px rgba(182,232,53,0.08); }
         @media (max-width: 768px) {
           .fw-card { padding: 20px 18px 22px !important; border-radius: 22px !important; }
-          .fw-header { flex-direction: column; align-items: flex-start !important; }
+          .fw-header { flex-direction: column; align-items: flex-start !important; gap: 10px !important; margin-bottom: 18px !important; }
+          .fw-title { font-size: 22px !important; }
           .fw-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
           .fw-ticker { display: none !important; }
         }
