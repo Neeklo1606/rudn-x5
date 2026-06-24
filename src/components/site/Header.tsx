@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "@tanstack/react-router";
 
 const links = [
@@ -48,7 +49,20 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
+    <>
     <header
       style={{
         position: "fixed",
@@ -153,14 +167,44 @@ export default function Header() {
         </div>
       </div>
 
-      {open && (
+      <style>{`
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0%;
+          height: 2px;
+          background: #B6E835;
+          transition: width 200ms ease;
+        }
+        .nav-link:hover { color: #272727; }
+        .nav-link:hover::after { width: 100%; }
+        .cta-pill:hover {
+          transform: scale(1.03);
+          box-shadow: 0 4px 16px rgba(182,232,53,0.3);
+        }
+        .mobile-menu-panel { animation: menu-in 180ms ease-out; }
+        @keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
+        @media (max-width: 900px) {
+          .desktop-nav { display: none !important; }
+          .desktop-cta { display: none !important; }
+          .hamburger { display: flex !important; }
+        }
+        @media (max-width: 480px) {
+          .header-logo-block { width: 78px !important; height: 34px !important; font-size: 12px !important; }
+        }
+      `}</style>
+    </header>
+
+    {open && typeof document !== "undefined" && createPortal(
           <div
             className="mobile-menu-panel"
             style={{
               position: "fixed",
               inset: 0,
               background: "#fff",
-              zIndex: 200,
+              zIndex: 1000,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -195,37 +239,9 @@ export default function Header() {
                 {l.label}
               </a>
             ))}
-          </div>
+          </div>,
+          document.body
         )}
-
-      <style>{`
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 0%;
-          height: 2px;
-          background: #B6E835;
-          transition: width 200ms ease;
-        }
-        .nav-link:hover { color: #272727; }
-        .nav-link:hover::after { width: 100%; }
-        .cta-pill:hover {
-          transform: scale(1.03);
-          box-shadow: 0 4px 16px rgba(182,232,53,0.3);
-        }
-        .mobile-menu-panel { animation: menu-in 180ms ease-out; }
-        @keyframes menu-in { from { opacity: 0; } to { opacity: 1; } }
-        @media (max-width: 900px) {
-          .desktop-nav { display: none !important; }
-          .desktop-cta { display: none !important; }
-          .hamburger { display: flex !important; }
-        }
-        @media (max-width: 480px) {
-          .header-logo-block { width: 78px !important; height: 34px !important; font-size: 12px !important; }
-        }
-      `}</style>
-    </header>
+    </>
   );
 }
