@@ -378,6 +378,10 @@ export default function Curriculum() {
           .track-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
           .year4-grid { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 767px) {
+          .track-grid > div { padding: 18px !important; }
+          .nlp-code { font-size: 10.5px !important; padding: 12px !important; }
+        }
         @media (max-width: 420px) {
           .curriculum-section { --rail: 40px; }
           .year-h3 { font-size: 20px !important; }
