@@ -6,9 +6,9 @@ function BigCounter({ to }: { to: number }) {
 
 const directions = [
   { Icon: ShoppingCart, title: "ML в ритейле", desc: "Прогнозирование спроса, персонализация, управление цепочками поставок" },
-  { Icon: Sparkle, title: "AI-продукты", desc: "Разработка AI-сервисов для 30 млн покупателей" },
-  { Icon: Code2, title: "AI-кодинг", desc: "Copilot-инструменты для разработчиков X5" },
-  { Icon: Eye, title: "Computer Vision", desc: "Распознавание товаров, контроль полок, autonomous checkout" },
+  { Icon: Sparkle, title: "ИИ-продукты", desc: "Сервисы для 30 млн покупателей" },
+  { Icon: Code2, title: "ИИ-кодинг", desc: "Помощники разработчика для команд X5" },
+  { Icon: Eye, title: "Компьютерное зрение", desc: "Распознавание товаров и контроль полок" },
 ];
 
 export default function PartnerBlock() {
@@ -20,7 +20,7 @@ export default function PartnerBlock() {
           <div className="partner-top">
             <div className="partner-copy">
               <div className="partner-eyebrow">ПАРТНЁР</div>
-              <h2 className="partner-h2">X5 Tech – мост в реальную AI-практику.</h2>
+              <h2 className="partner-h2">X5 Tech — мост в реальную ИИ-практику</h2>
               <p className="partner-lead">
                 X5 Tech – технологическое ядро X5 Group, одного из крупнейших ритейлеров России. Команда строит AI-продукты, которые работают на миллионы покупателей каждый день.
               </p>
@@ -77,10 +77,7 @@ export default function PartnerBlock() {
             font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px;
             color: rgba(182,232,53,0.85); text-transform: uppercase; margin-bottom: 14px;
           }
-          .partner-h2 {
-            font-weight: 700; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em;
-            color: #fff; max-width: 620px; margin: 0 0 16px;
-          }
+          .partner-h2 { max-width: 620px; }
           .partner-lead {
             font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.68);
             max-width: 560px; margin: 0 0 28px;
@@ -160,21 +157,21 @@ export default function PartnerBlock() {
           }
 
           .direction-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
           }
           .dir-card {
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 22px 20px;
+            border-radius: 14px;
+            padding: 18px 16px;
             transition: all 300ms ease;
           }
           .dir-title {
-            font-weight: 600; font-size: 15.5px; color: #fff;
-            margin-top: 14px; margin-bottom: 6px;
+            font-weight: 600; font-size: 14.5px; color: #fff;
+            margin-top: 12px; margin-bottom: 4px; letter-spacing: -0.01em;
           }
           .dir-desc {
-            font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.55);
+            font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,0.55);
           }
           .dir-card:hover { background: rgba(255,255,255,0.08) !important; border-color: rgba(182,232,53,0.3) !important; box-shadow: 0 0 24px rgba(182,232,53,0.08); }
 
@@ -185,14 +182,15 @@ export default function PartnerBlock() {
           }
           @media (max-width: 768px) {
             .partner-section { padding: 56px 0 !important; }
-            .partner-h2 { font-size: 28px !important; }
             .partner-lead { font-size: 15px !important; margin-bottom: 22px !important; }
             .partner-quote { padding: 18px 18px; }
             .partner-quote-text { font-size: 15px !important; }
             .partner-visual { padding: 24px 22px; min-height: 0; flex-direction: column; align-items: flex-start; gap: 20px; }
             .partner-stat-value { font-size: 44px !important; }
-            .direction-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
-            .dir-card { padding: 18px 16px; }
+            .direction-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+            .dir-card { padding: 14px 12px; border-radius: 12px; }
+            .dir-title { font-size: 13.5px; margin-top: 10px; }
+            .dir-desc { font-size: 12px; }
           }
         `}</style>
       </section>

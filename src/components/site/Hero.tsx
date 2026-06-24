@@ -31,7 +31,7 @@ export default function Hero() {
       className="hero-section"
       style={{
         background: CANVAS,
-        padding: "96px 0 48px",
+        padding: "84px 0 36px",
         position: "relative",
       }}
     >
@@ -126,9 +126,9 @@ export default function Hero() {
             >
               <HeroVisual />
 
-              <div className="hero-float hero-float--lime">Data Driven</div>
+              <div className="hero-float hero-float--lime">На реальных данных</div>
               <div className="hero-float hero-float--glass">
-                <p className="hero-float-eyebrow">Architecture</p>
+                <p className="hero-float-eyebrow">Архитектура</p>
                 <p className="hero-float-body">
                   Нейросети для логистики и&nbsp;ритейла X5&nbsp;на&nbsp;реальных данных.
                 </p>
@@ -157,15 +157,15 @@ export default function Hero() {
           position: relative; z-index: 1;
           display: grid;
           grid-template-columns: 7fr 5fr;
-          min-height: 560px;
+          min-height: 0;
         }
         .hero-left {
-          padding: 48px 52px 40px;
+          padding: 36px 44px 28px;
           display: flex; flex-direction: column; justify-content: space-between;
-          gap: 36px;
+          gap: 22px;
           min-width: 0;
         }
-        .hero-logos { display: flex; align-items: center; gap: 24px; margin-bottom: 28px; }
+        .hero-logos { display: flex; align-items: center; gap: 20px; margin-bottom: 18px; }
         .hero-logo { display: inline-flex; align-items: center; gap: 10px; }
         .hero-logo-mark {
           width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
@@ -176,28 +176,19 @@ export default function Hero() {
         .hero-logo-text { font-family: Inter, sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: ${INK}; }
         .hero-logo-divider { width: 1px; height: 22px; background: #e5e5e0; }
 
-        .hero-label {
-          display: flex; flex-direction: column; gap: 6px;
-          margin: 0 0 18px;
-          max-width: 560px;
-        }
+        .hero-label { display: flex; flex-direction: column; gap: 4px; margin: 0 0 12px; max-width: 560px; }
         .hero-label-eyebrow {
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
           font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
           color: #8a8a82;
         }
-        .hero-label-title {
-          font-family: Inter, sans-serif;
-          font-weight: 600; font-size: 17px; line-height: 1.45;
-          color: #3f3f3f;
-          letter-spacing: -0.005em;
-        }
+        .hero-label-title { font-family: Inter, sans-serif; font-weight: 600; font-size: 15.5px; line-height: 1.4; color: #3f3f3f; letter-spacing: -0.005em; }
         .hero-h1 {
           font-family: Inter, sans-serif;
           font-weight: 800;
-          font-size: 58px; line-height: 1.05; letter-spacing: -0.025em;
+          font-size: clamp(34px, 4.4vw, 50px); line-height: 1.04; letter-spacing: -0.025em;
           color: ${INK};
-          margin: 0 0 28px;
+          margin: 0 0 20px;
         }
         .hero-h1-accent {
           background: linear-gradient(90deg, ${LIME}, ${LIME_DARK});
@@ -207,12 +198,12 @@ export default function Hero() {
           display: inline-block;
         }
 
-        .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+        .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
         .hero-cta-primary {
           display: inline-flex; align-items: center; gap: 10px;
-          min-height: 52px; padding: 0 28px;
+          min-height: 46px; padding: 0 22px;
           background: ${INK}; color: #fff;
-          font-family: Inter, sans-serif; font-weight: 700; font-size: 15px;
+          font-family: Inter, sans-serif; font-weight: 700; font-size: 14px;
           border-radius: 999px;
           transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
           box-shadow: 0 10px 24px -10px rgba(39,39,39,0.4);
@@ -220,9 +211,9 @@ export default function Hero() {
         .hero-cta-primary:hover { transform: translateY(-1px); background: #000; }
         .hero-cta-secondary {
           display: inline-flex; align-items: center;
-          min-height: 52px; padding: 0 24px;
+          min-height: 46px; padding: 0 20px;
           color: ${INK};
-          font-family: Inter, sans-serif; font-weight: 600; font-size: 15px;
+          font-family: Inter, sans-serif; font-weight: 600; font-size: 14px;
           border: 1.5px solid #e2e2dc; border-radius: 999px;
           background: transparent;
           transition: background 0.2s ease, border-color 0.2s ease;
@@ -238,15 +229,12 @@ export default function Hero() {
           border-radius: 6px;
         }
 
-        .hero-stats {
-          display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-          padding-top: 24px; border-top: 1px solid #ececea;
-        }
+        .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding-top: 18px; border-top: 1px solid #ececea; }
         .hero-stat-value {
-          font-family: Inter, sans-serif; font-weight: 800; font-size: 32px; line-height: 1; color: ${INK};
-          margin: 0 0 6px;
+          font-family: Inter, sans-serif; font-weight: 800; font-size: 26px; line-height: 1; color: ${INK};
+          margin: 0 0 4px;
         }
-        .hero-stat-suffix { font-weight: 600; font-size: 18px; color: #555; }
+        .hero-stat-suffix { font-weight: 600; font-size: 15px; color: #555; }
         .hero-stat-label {
           font-family: Inter, sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
           color: #9a9a92; margin: 0;
@@ -282,12 +270,23 @@ export default function Hero() {
         }
         .hero-float-body { font-family: Inter, sans-serif; font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 0; }
 
+        @media (min-width: 1280px) {
+          .hero-h1 { font-size: 50px; }
+        }
+        /* Compact fit on ~13" laptops */
+        @media (min-width: 1024px) and (max-height: 820px) {
+          .hero-section { padding: 72px 0 24px !important; }
+          .hero-left { padding: 28px 36px 22px; gap: 16px; }
+          .hero-h1 { font-size: 42px; margin-bottom: 16px; }
+          .hero-stat-value { font-size: 22px; }
+          .hero-right { min-height: 0; }
+        }
         @media (max-width: 1024px) {
-          .hero-section { padding: 84px 0 36px !important; }
+          .hero-section { padding: 72px 0 28px !important; }
           .hero-inner { grid-template-columns: 1fr; min-height: 0; }
           .hero-left { padding: 32px 28px 28px; gap: 24px; }
-          .hero-right { min-height: 300px; }
-          .hero-h1 { font-size: 44px; margin-bottom: 22px; }
+          .hero-right { min-height: 260px; }
+          .hero-h1 { font-size: 38px; margin-bottom: 18px; }
         }
         @media (max-width: 640px) {
           .hero-section { padding: 76px 0 24px !important; }
@@ -404,7 +403,7 @@ function HeroVisual() {
       >
         <div style={{ fontFamily: "Inter, sans-serif", fontWeight: 900, fontSize: 72, lineHeight: 1, letterSpacing: "-0.04em" }}>AI</div>
         <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: "0.32em", color: "rgba(255,255,255,0.55)", marginTop: 8 }}>
-          APPLIED RESEARCH
+          ПРИКЛАДНЫЕ ИССЛЕДОВАНИЯ
         </div>
       </div>
 

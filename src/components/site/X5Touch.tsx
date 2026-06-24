@@ -5,10 +5,10 @@ import { LineChart, Sparkles, Code2, ScanSearch } from "lucide-react";
 type Key = "ml" | "prod" | "code" | "cv";
 
 const cards: { key: Key; title: string; desc: string; icon: typeof LineChart; bar: string }[] = [
-  { key: "ml", title: "ML в ритейле", desc: "Прогнозирование спроса, персонализация, управление цепочками", icon: LineChart, bar: "#B6E835" },
-  { key: "prod", title: "AI-продукты", desc: "Разработка AI-сервисов для миллионов покупателей", icon: Sparkles, bar: "#A79FFF" },
-  { key: "code", title: "AI-кодинг", desc: "Copilot-инструменты и автоматизация разработки", icon: Code2, bar: "#B6E835" },
-  { key: "cv", title: "Computer Vision", desc: "Распознавание товаров и контроль полок", icon: ScanSearch, bar: "#A79FFF" },
+  { key: "ml", title: "Машинное обучение в ритейле", desc: "Прогноз спроса, персонализация, управление цепочками", icon: LineChart, bar: "#B6E835" },
+  { key: "prod", title: "ИИ-продукты", desc: "Сервисы для миллионов покупателей", icon: Sparkles, bar: "#A79FFF" },
+  { key: "code", title: "ИИ-кодинг", desc: "Помощники разработчика и автоматизация", icon: Code2, bar: "#B6E835" },
+  { key: "cv", title: "Компьютерное зрение", desc: "Распознавание товаров и контроль полок", icon: ScanSearch, bar: "#A79FFF" },
 ];
 
 function ChartDemo() {
@@ -180,7 +180,7 @@ export default function X5Touch() {
         <path d="M0,12 Q300,0 600,12 T1200,12 L1200,0 L0,0 Z" fill="#1A2035" />
       </svg>
       <div className="container">
-        <div className="x5touch-eyebrow">X5 TOUCH</div>
+        <div className="x5touch-eyebrow">Технологии X5</div>
         <h2 className="h2-big x5touch-h2">Прикоснись к технологиям X5</h2>
         <p className="x5touch-lead">
           Четыре направления AI в X5 Tech. Кликни на карточку – увидишь, как это работает изнутри.

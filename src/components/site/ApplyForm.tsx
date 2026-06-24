@@ -135,7 +135,7 @@ export default function ApplyForm() {
   const commentError = !!(touched.comment && err.comment);
 
   return (
-    <section id="apply" style={{ background: "#F1F1F1", padding: "64px 0 72px" }}>
+    <section id="apply" className="apply-section" style={{ background: "#F1F1F1", padding: "64px 0 72px" }}>
       <div className="container">
         <div
           style={{
@@ -338,8 +338,16 @@ export default function ApplyForm() {
         .apply-input:focus { border-color: #B6E835 !important; box-shadow: 0 0 0 4px rgba(182,232,53,0.12); }
         .submit-btn:hover { background: #D6F360 !important; transform: scale(1.01); box-shadow: var(--shadow-glow-lime); }
         @media (max-width: 768px) {
-          .form-card { padding: 26px 20px !important; border-radius: 22px !important; }
-          .form-name-grid { grid-template-columns: 1fr !important; }
+          .apply-section { padding: 28px 0 36px !important; }
+          .form-card { padding: 18px 16px !important; border-radius: 18px !important; }
+          .form-card h2 { font-size: 20px !important; margin-bottom: 4px !important; }
+          .form-card h2 + p { font-size: 13px !important; margin-bottom: 14px !important; }
+          .form-card form { gap: 8px !important; }
+          .form-card .apply-input { height: 42px !important; font-size: 14px !important; }
+          .form-card textarea.apply-input { min-height: 56px !important; padding: 8px 14px !important; }
+          .form-card label > span:last-child { font-size: 12px !important; }
+          .form-card .submit-btn { height: 46px !important; font-size: 14px !important; }
+          .form-name-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
         }
       `}</style>
     </section>
